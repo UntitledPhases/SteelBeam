@@ -30,7 +30,8 @@ h1 {
 .card {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     margin: 15px 10px;
-    transition: transform 1s ease, box-shadow 0.3s ease;
+    transition: transform 1s ease, box-shadow 0.3s ease, filter 1s ease;
+    filter: brightness(70%);
 }
 
 .card img {
@@ -42,4 +43,5 @@ h1 {
 .card:hover {
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.7);
     transform: scale(1.05);
+    filter: brightness(100%);
 }
