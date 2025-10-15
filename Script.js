@@ -15,14 +15,15 @@ const games = [
     { title: "Risk of Rain 2", img: "https://placehold.co/200x266?text=Risk+of+Rain+2" }
 ];
 
+const library = document.querySelector(".library"); // Find library container
 
 games.forEach(game => {
     const card = document.createElement("a");
     card.classList.add("card");
-    card.href = "#";
+    card.href = "#"; //placeholder link
     
     card.innerHTML =
-        `<img src="${game.img}" alt="${game.title}"></img>`;
+        `<img src="${game.img}" alt="${game.title}">`;
 
-    library.appendChild(card);
+    library.appendChild(card);  // Fill library container with cards
 });
