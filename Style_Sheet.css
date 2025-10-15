@@ -16,4 +16,6 @@ body {
 h1 {
     color: slategray;
     text-align: center;
+    text-decoration: underline overline;
+    text-shadow: 0 5px 5px black;
 }
