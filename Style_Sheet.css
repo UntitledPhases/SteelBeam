@@ -6,9 +6,10 @@ html, body {
 
 body {
     font-family: Arial, sans-serif;
-    color: slategray;
+    color: rgb(140, 156, 172);
     text-align: center;
-    background: radial-gradient(circle at center, rgb(49, 50, 83), rgb(6, 19, 75));
+    text-shadow: 0 5px 5px black; 
+    background: radial-gradient(circle at center, rgb(81, 83, 126), rgb(26, 31, 55));
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -17,5 +18,14 @@ h1 {
     color: slategray;
     text-align: center;
     text-decoration: underline overline;
-    text-shadow: 0 5px 5px black;
+}
+
+.library{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    justify-content: center;
+}
+
+.card {
+    padding: 15px 10px
 }
