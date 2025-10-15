@@ -5,7 +5,7 @@ const games = [
     { title: "Hades", img: "https://placehold.co/200x266?text=Hades" },
     { title: "Noita", img: "https://placehold.co/200x266?text=Noita" },
     { title: "Hollow Knight", img: "https://placehold.co/200x266?text=Hollow+Knight" },
-    { title: "Terraria", img: "https://placehold.co/200x266?text=Terraria" },
+    { title: "Terraria", img: "/images/Terraria.jpg" },
     { title: "Celeste", img: "https://placehold.co/200x266?text=Celeste" },
     { title: "Dark Souls 3", img: "https://placehold.co/200x266?text=Dark+Souls+3" },
     { title: "Dead Cells", img: "https://placehold.co/200x266?text=Dead+Cells" },
