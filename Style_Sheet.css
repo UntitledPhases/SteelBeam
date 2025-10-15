@@ -12,6 +12,7 @@ body {
     background: radial-gradient(circle at center, rgb(81, 83, 126), rgb(26, 31, 55));
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 h1 {
