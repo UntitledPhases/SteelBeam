@@ -4,12 +4,20 @@
         <meta charset="UTF-8">
 
         <link rel="stylesheet" href="Style_Sheet.css">
-        <script src="script.js" defer></script>
+        <script src="Script.js" defer></script>
         <title>SteelBeam</title>
     </head>
     <body>
         <img src="Images/SteelBeamLogo.png" alt="logo" class="logo">
         <h2>Catalog</h2>
+
+        <!--Add way to filter games based on collection-->
+        <div class="filters">
+            <button data-filter="all" aria-pressed="true">All</button>
+            <button data-filter="Favorites">Favorites</button>
+            <button data-filter="Wishlist">Wishlist</button>
+            <button data-filter="Completed">Completed</button>
+        </div>
 
         <!--Actual game cards-->
         <!--Replace placeholder images with actual images which need to be placed in images folder-->

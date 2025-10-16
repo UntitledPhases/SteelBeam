@@ -34,12 +34,12 @@ function loadCollection()
 const library = document.querySelector(".library"); // Find library container
 
 games.forEach(game => {
-    const card = document.createElement("a");
-    card.classList.add("card");
-    card.href = "#"; //placeholder link
+    const card = document.createElement("a"); //creates card element for each game in the array
+    card.classList.add("card"); // adds card class to each card
+    card.href = "#"; //placeholder link to make cards clickable, don't know if we need this
     
     card.innerHTML =
-        `<img src="${game.img}" alt="${game.title}">`;
+        `<img src="${game.img}" alt="${game.title}">`; //Fill card element with game image and alt info
 
-    library.appendChild(card);  // Fill library container with cards
+    library.appendChild(card);  // Fill library container with cards, library is wrapper for all cards
 });
