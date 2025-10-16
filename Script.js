@@ -1,7 +1,7 @@
 //fill this up with all the games that we will be using
 //need to create some sort of similar storage structure in localStorage, need to also add in game genre and platform,
 const games = [
-    { title: "The Binding of Isaac: Rebirth", img: "https://placehold.co/200x266?text=Isaac" },
+    { title: "The Binding of Isaac: Rebirth", img: "Images/Isaac.png" },
     { title: "Battlefield 6", img: "https://placehold.co/200x266?text=Battlefield+6" },
     { title: "Hades", img: "https://placehold.co/200x266?text=Hades" },
     { title: "Noita", img: "Images/Noita.png" },
@@ -10,7 +10,7 @@ const games = [
     { title: "Celeste", img: "https://placehold.co/200x266?text=Celeste" },
     { title: "Dark Souls 3", img: "https://placehold.co/200x266?text=Dark+Souls+3" },
     { title: "Dead Cells", img: "https://placehold.co/200x266?text=Dead+Cells" },
-    { title: "Cuphead", img: "https://placehold.co/200x266?text=Cuphead" },
+    { title: "Cuphead", img: "Images/Cuphead.png" },
     { title: "Cyberpunk 2077", img: "https://placehold.co/200x266?text=Cyberpunk+2077" },
     { title: "God of War", img: "https://placehold.co/200x266?text=God+of+War" },
     { title: "Risk of Rain 2", img: "Images/RoR2.png" },
