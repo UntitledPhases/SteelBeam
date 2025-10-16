@@ -1,9 +1,10 @@
-//fill this up with all the games that we will be using  
+//fill this up with all the games that we will be using
+//need to create some sort of similar storage structure in localStorage, need to also add in game genre and platform,
 const games = [
     { title: "The Binding of Isaac: Rebirth", img: "https://placehold.co/200x266?text=Isaac" },
     { title: "Battlefield 6", img: "https://placehold.co/200x266?text=Battlefield+6" },
     { title: "Hades", img: "https://placehold.co/200x266?text=Hades" },
-    { title: "Noita", img: "https://placehold.co/200x266?text=Noita" },
+    { title: "Noita", img: "Images/Noita.png" },
     { title: "Hollow Knight", img: "https://placehold.co/200x266?text=Hollow+Knight" },
     { title: "Terraria", img: "Images/Terraria.png" },
     { title: "Celeste", img: "https://placehold.co/200x266?text=Celeste" },
@@ -12,8 +13,23 @@ const games = [
     { title: "Cuphead", img: "https://placehold.co/200x266?text=Cuphead" },
     { title: "Cyberpunk 2077", img: "https://placehold.co/200x266?text=Cyberpunk+2077" },
     { title: "God of War", img: "https://placehold.co/200x266?text=God+of+War" },
-    { title: "Risk of Rain 2", img: "https://placehold.co/200x266?text=Risk+of+Rain+2" }
+    { title: "Risk of Rain 2", img: "Images/RoR2.png" },
 ];
+
+/*localStorage collections? need to figure this out better
+function createCollection(name) {
+    const collections = JSON.parse(localStorage.getItem("collections"));
+    if (!collections[name]) collections[name] = [];
+    localStorage.setItem("collections", JSON.stringify(collections));
+}
+
+function addToCollection()
+
+function loadCollection()
+                                            comment end*/
+
+//sort games alphabetically by title
+//games.sort((a, b) => a.title.localeCompare(b.title));
 
 const library = document.querySelector(".library"); // Find library container
 
