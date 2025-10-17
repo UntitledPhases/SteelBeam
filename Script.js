@@ -81,3 +81,12 @@ function saveData(data) {
 
 //ok so these 2 functions are how we put data in and get data out of localStorage. We put data in so users can update their collections
 //and we pull data out so we can display it on the page. 
+
+const data = getData(); //use this to store a copy of user's localStorage data in a variable for easy access
+
+//to actually start adding games to collections and stuff, we can do something like this inside another function:
+data.collections.favorites.push(1); 
+saveData(data);
+//this updates the local copy of the localStorage data, then saves it back to user's localStorage
+
+
