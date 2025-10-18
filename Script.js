@@ -61,6 +61,7 @@ const DATA = {
         hoursPlayed: {}                   //hoursPlayed {<gameID>: 12, <gameID>: 45, etc.}
     }
 };
+
 //ngl I feel like properly storing things in this is going to be a nightmare but we got this guys we can do anything
 // ok now to actually create the thing in localStorage
 function initializeStorage() {
@@ -71,6 +72,9 @@ function initializeStorage() {
 
 initializeStorage(); //call the function once when page loads
 
+console.log('INIT data:', getData());
+//ok so these 2 functions are how we put data in and get data out of localStorage.
+//put data in so we can update user's collections and we pull data out so we can display it on the page.
 function getData() {
     return JSON.parse(localStorage.getItem(KEY));
 }
@@ -79,14 +83,49 @@ function saveData(data) {
     localStorage.setItem(KEY, JSON.stringify(data));
 }
 
-//ok so these 2 functions are how we put data in and get data out of localStorage. We put data in so users can update their collections
-//and we pull data out so we can display it on the page. 
-
-const data = getData(); //use this to store a copy of user's localStorage data in a variable for easy access
+const get = getData(); //can use this inside functions to get copy of user's data from localStorage
 
 //to actually start adding games to collections and stuff, we can do something like this inside another function:
-data.collections.favorites.push(1); 
-saveData(data);
+get.collections.favorites.push(1);
+saveData(get);
 //this updates the local copy of the localStorage data, then saves it back to user's localStorage
 
+//Ok now to add games to collections and 
 
+
+//Now to actually make the filtering buttons work
+const buttons = document.querySelectorAll("[data-filter]"); //select all buttons with data-filter attribute
+const cards = document.querySelectorAll(".card"); //select all game cards
+
+function filterCards(filter) {
+    const get = getData(); //get fresh copy of data from localStorage
+    cards.forEach(card => {
+        const id = Number(card.dataset.id); //get the game ID from the card, convert from string to number
+        switch (filter) {
+            case "All":
+            default:
+                card.style.display = ""; //show all cards
+                break;
+            case "Favorites":
+                card.style.display = get.collections.favorites.includes(id) ? "" : "none";
+                break;
+            case "Wishlist":
+                card.style.display = get.collections.wishlist.includes(id) ? "" : "none";
+                break;
+            case "Completed":
+                card.style.display = get.collections.completed.includes(id) ? "" : "none";
+                break;
+        }
+    });
+};
+
+//now to add event listeners to buttons so they actually do something when clicked
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        const filter = button.dataset.filter; //get the filter type from button's data-filter attribute
+        filterCards(filter); //call filterCards function with the selected filter
+    });
+});
+
+//initially show all cards
+filterCards("all");
