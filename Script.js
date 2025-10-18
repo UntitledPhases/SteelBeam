@@ -14,6 +14,9 @@ const games = [
     { title: "Cyberpunk 2077", img: "https://placehold.co/200x266?text=Cyberpunk+2077" },
     { title: "God of War", img: "https://placehold.co/200x266?text=God+of+War" },
     { title: "Risk of Rain 2", img: "Images/RoR2.png" },
+    { title: "Stardew Valley", img: "Images/Stardew.png" },
+    { title: "Team Fortress 2", img: "Images/TF2.png" },
+    { title: "Heroes of Hammerwatch", img: "Images/HoH.png"}
 ];
 
 //sort games alphabetically by title
@@ -86,7 +89,7 @@ function saveData(data) {
 const get = getData(); //can use this inside functions to get copy of user's data from localStorage
 
 //to actually start adding games to collections and stuff, we can do something like this inside another function:
-get.collections.favorites.push(1);
+get.collections.favorites.push(/*<gameID>*/);
 saveData(get);
 //this updates the local copy of the localStorage data, then saves it back to user's localStorage
 
