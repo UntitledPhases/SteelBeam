@@ -20,6 +20,10 @@ body {
     width: auto;
 }
 
+button {
+    text-shadow:  1px 1px black;
+}
+
 h1 {
     color: slategray;
     text-align: center;
@@ -51,6 +55,10 @@ h1 {
     filter: brightness(100%);
 }
 
+
+.bfav { color: gold;}
+.bwish { color: rgb(0, 174, 255);}
+.bcomp { color: rgb(0, 255, 0);}
 .card.in-favorites {border: 3px solid gold;}
 .card.in-wishlist {border: 3px solid rgb(0, 174, 255);}
 .card.in-completed {border: 3px solid rgb(0, 255, 0);}

@@ -1,23 +1,23 @@
 //fill this up with all the games that we will be using
 //need to create some sort of similar storage structure in localStorage, need to also add in game genre and platform,
 const games = [
-    { title: "The Binding of Isaac: Rebirth", img: "Images/Isaac.png" },
-    { title: "Battlefield 6", img: "https://placehold.co/200x266?text=Battlefield+6" },
-    { title: "Hades", img: "https://placehold.co/200x266?text=Hades" },
-    { title: "Noita", img: "Images/Noita.png" },
-    { title: "Hollow Knight", img: "Images/hollowknight.png" },
-    { title: "Terraria", img: "Images/Terraria.png" },
-    { title: "Celeste", img: "https://placehold.co/200x266?text=Celeste" },
-    { title: "Dark Souls 3", img: "https://placehold.co/200x266?text=Dark+Souls+3" },
-    { title: "Dead Cells", img: "https://placehold.co/200x266?text=Dead+Cells" },
-    { title: "Cuphead", img: "Images/Cuphead.png" },
-    { title: "Cyberpunk 2077", img: "Images/cyberpunk.png" },
-    { title: "God of War", img: "https://placehold.co/200x266?text=God+of+War" },
-    { title: "Risk of Rain 2", img: "Images/RoR2.png" },
-    { title: "Stardew Valley", img: "Images/Stardew.png" },
-    { title: "Team Fortress 2", img: "Images/TF2.png" },
-    { title: "Heroes of Hammerwatch", img: "Images/HoH.png"},
-    { title: "Tokyo Xtreme Racer", img: "Images/tokyoxtreme.png"}
+    { title: "The Binding of Isaac: Rebirth", img: "Images/Isaac.png", platform: [], genre: []},
+    { title: "Battlefield 6", img: "https://placehold.co/200x266?text=Battlefield+6", platform: [], genre: [] },
+    { title: "Hades", img: "https://placehold.co/200x266?text=Hades", platform: [], genre: [] },
+    { title: "Noita", img: "Images/Noita.png", platform: [], genre: [] },
+    { title: "Hollow Knight", img: "Images/hollowknight.png", platform: [], genre: [] },
+    { title: "Terraria", img: "Images/Terraria.png", platform: [], genre: [] },
+    { title: "Celeste", img: "https://placehold.co/200x266?text=Celeste", platform: [], genre: [] },
+    { title: "Dark Souls 3", img: "https://placehold.co/200x266?text=Dark+Souls+3", platform: [], genre: [] },
+    { title: "Dead Cells", img: "https://placehold.co/200x266?text=Dead+Cells", platform: [], genre: [] },
+    { title: "Cuphead", img: "Images/Cuphead.png", platform: [], genre: [] },
+    { title: "Cyberpunk 2077", img: "Images/cyberpunk.png", platform: [], genre: [] },
+    { title: "God of War", img: "https://placehold.co/200x266?text=God+of+War", platform: [], genre: [] },
+    { title: "Risk of Rain 2", img: "Images/RoR2.png", platform: [], genre: [] },
+    { title: "Stardew Valley", img: "Images/Stardew.png", platform: [], genre: [] },
+    { title: "Team Fortress 2", img: "Images/TF2.png", platform: [], genre: [] },
+    { title: "Heroes of Hammerwatch", img: "Images/HoH.png", platform: [], genre: [] },
+    { title: "Tokyo Xtreme Racer", img: "Images/tokyoxtreme.png", platform: [], genre: [] }
 ];
 
 //sort games alphabetically by title
@@ -57,6 +57,14 @@ const DATA = {
         PlayStation: [],
         Xbox: [],
         Switch: []
+    },
+
+    genre: {                         //same for platform, each array stores game IDs that belong to that platform
+        Shooter: [],
+        Adventure: [],
+        RPG: [],
+        Switch: [],
+        Platformer: []
     },
 
     meta: {                               //meta holds pairs of values, game ID maps to value
