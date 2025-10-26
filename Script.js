@@ -1,23 +1,23 @@
 //fill this up with all the games that we will be using
 //need to create some sort of similar storage structure in localStorage, need to also add in game genre and platform,
 const games = [
-    { title: "The Binding of Isaac: Rebirth", img: "Images/Isaac.png", platform: [], genre: []},
-    { title: "Battlefield 6", img: "https://placehold.co/200x266?text=Battlefield+6", platform: [], genre: [] },
-    { title: "Hades", img: "https://placehold.co/200x266?text=Hades", platform: [], genre: [] },
-    { title: "Noita", img: "Images/Noita.png", platform: [], genre: [] },
-    { title: "Hollow Knight", img: "Images/hollowknight.png", platform: [], genre: [] },
-    { title: "Terraria", img: "Images/Terraria.png", platform: [], genre: [] },
-    { title: "Celeste", img: "https://placehold.co/200x266?text=Celeste", platform: [], genre: [] },
-    { title: "Dark Souls 3", img: "https://placehold.co/200x266?text=Dark+Souls+3", platform: [], genre: [] },
-    { title: "Dead Cells", img: "https://placehold.co/200x266?text=Dead+Cells", platform: [], genre: [] },
-    { title: "Cuphead", img: "Images/Cuphead.png", platform: [], genre: [] },
-    { title: "Cyberpunk 2077", img: "Images/cyberpunk.png", platform: [], genre: [] },
-    { title: "God of War", img: "https://placehold.co/200x266?text=God+of+War", platform: [], genre: [] },
-    { title: "Risk of Rain 2", img: "Images/RoR2.png", platform: [], genre: [] },
-    { title: "Stardew Valley", img: "Images/Stardew.png", platform: [], genre: [] },
-    { title: "Team Fortress 2", img: "Images/TF2.png", platform: [], genre: [] },
-    { title: "Heroes of Hammerwatch", img: "Images/HoH.png", platform: [], genre: [] },
-    { title: "Tokyo Xtreme Racer", img: "Images/tokyoxtreme.png", platform: [], genre: [] }
+    { title: "The Binding of Isaac: Rebirth", img: "Images/Isaac.png", platform: ["PC"], genre: ["Shooter", "RPG"]},
+    { title: "Battlefield 6", img: "https://placehold.co/200x266?text=Battlefield+6", platform: ["PC","Xbox", "Playstation"], genre: ["Shooter"] },
+    { title: "Hades", img: "https://placehold.co/200x266?text=Hades", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["RPG"] },
+    { title: "Noita", img: "Images/Noita.png", platform: ["PC"], genre: ["Adventure", "RPG"] },
+    { title: "Hollow Knight", img: "Images/hollowknight.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure"] },
+    { title: "Terraria", img: "Images/Terraria.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure", "RPG"] },
+    { title: "Celeste", img: "https://placehold.co/200x266?text=Celeste", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure", "Platformer"] },
+    { title: "Dark Souls 3", img: "https://placehold.co/200x266?text=Dark+Souls+3", platform: ["PC",,"Xbox", "Playstation"], genre: ["RPG"] },
+    { title: "Dead Cells", img: "https://placehold.co/200x266?text=Dead+Cells", platform: ["PC", "Playstation"], genre: ["Platformer"] },
+    { title: "Cuphead", img: "Images/Cuphead.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: [] },
+    { title: "Cyberpunk 2077", img: "Images/cyberpunk.png", platform: ["PC","Xbox", "Playstation"], genre: ["RPG"] },
+    { title: "God of War", img: "https://placehold.co/200x266?text=God+of+War", platform: ["PC", "Playstation"], genre: [] },
+    { title: "Risk of Rain 2", img: "Images/RoR2.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: [] },
+    { title: "Stardew Valley", img: "Images/Stardew.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure"] },
+    { title: "Team Fortress 2", img: "Images/TF2.png", platform: ["PC"], genre: ["Shooter"] },
+    { title: "Heroes of Hammerwatch", img: "Images/HoH.png", platform: ["PC"], genre: ["RPG"] },
+    { title: "Tokyo Xtreme Racer", img: "Images/tokyoxtreme.png", platform: ["PC", "Playstation"], genre: [] }
 ];
 
 //sort games alphabetically by title
@@ -26,7 +26,7 @@ const games = [
 //Ok this code is kind of fucked up ngl but trust me if you go line by line it makes sense.
 //Basically we have the library container in HTML. Thats the first line. Then we loop through each game in the array above
 // and give it an ID. We then create the cards which are the actual little boxes you see on the screen, 
-// we attach the game ID to the card as well and it goes into the library container.
+// we attach the game ID to the card aswell and it goes into the library container.
 
 const library = document.querySelector(".library"); // Find library container
 
@@ -40,8 +40,17 @@ games.forEach((game, i) => {
     card.innerHTML =
         `<img src="${game.img}" alt="${game.title}">`; //Fill card element with game image and alt info
     library.appendChild(card);  // Fill library container with cards, library is wrapper for all cards
-});
 
+    //looked at this code on thursday for 5 hours straight, gave up, locked in on saturday
+card.addEventListener("click", (event) => {
+    event.preventDefault();
+    document.getElementById("info-title").textContent = game.title;
+    document.getElementById("info-genre").textContent = 
+    game.genre.length ? game.genre.join(", ") : "N/A";
+    document.getElementById("info-platform").textContent = 
+    game.platform.length ? game.platform.join(", ") : "N/A";
+    });
+})
 //functions to create keys and store them in localStorage for different collections
 
 const KEY = "game_data"; //key for game data, just so we don't have to type it out every time we update the localStorage
@@ -57,7 +66,7 @@ const DATA = {
         PlayStation: [],
         Xbox: [],
         Switch: []
-    },
+    }, 
 
     genre: {                         //same for platform, each array stores game IDs that belong to that platform
         Shooter: [],
@@ -105,25 +114,59 @@ saveData(get);
 const buttons = document.querySelectorAll("[data-filter]"); //select all buttons with data-filter attribute
 const cards = document.querySelectorAll(".card"); //select all game cards
 
+const genreSelect = document.getElementById('genre-filter');
+const platformSelect = document.getElementById('platform-filter');
+
+const allGenres = [...new Set(games.flatMap(g => g.genre))].filter(Boolean);
+const allPlatforms = [...new Set(games.flatMap(g => g.platform))].filter(Boolean);
+
+allGenres.forEach(g => {
+    const option = document.createElement('option');
+    option.value = g;
+    option.textContent = g;
+    genreSelect.appendChild(option);
+});
+
+allPlatforms.forEach(p => {
+    const option = document.createElement('option');
+    option.value = p;
+    option.textContent = p;
+    platformSelect.appendChild(option);
+});
+
 function filterCards(filter) {
-    const get = getData(); //get fresh copy of data from localStorage
+    const get = getData(); //get fresh copy of data from 
+    const selectedGenre = genreSelect.value;
+    const selectedPlatform = platformSelect.value;
+
     cards.forEach(card => {
         const id = Number(card.dataset.id); //get the game ID from the card, convert from string to number
+        
+        const game = games.find(g => g.id === id);
+        let visible = true;
+
         switch (filter) {
-            case "All":
-            default:
-                card.style.display = ""; //show all cards
-                break;
             case "Favorites":
-                card.style.display = get.collections.favorites.includes(id) ? "" : "none";
+                visible = get.collections.favorites.includes(id);
                 break;
             case "Wishlist":
-                card.style.display = get.collections.wishlist.includes(id) ? "" : "none";
+                visible = get.collections.wishlist.includes(id);
                 break;
             case "Completed":
-                card.style.display = get.collections.completed.includes(id) ? "" : "none";
+                visible = get.collections.completed.includes(id);
                 break;
+            default:
+                visible = true;
         }
+        if (selectedGenre !== "all" && !game.genre.includes(selectedGenre)) {
+            visible = false;
+        }
+        
+        if (selectedPlatform !== "all" && !game.platform.includes(selectedPlatform)) {
+            visible = false;
+        }
+
+        card.style.display = visible ? "" : "none";
     });
 };
 
@@ -134,6 +177,15 @@ buttons.forEach(button => {
         filterCards(filter); //call filterCards function with the selected filter
     });
 });
+
+genreSelect.addEventListener("change", () => {
+    const activeButton = document.querySelector("[data-filter][aria-pressed='true']") || { dataset: { filter: "all" } };
+    filterCards(activeButton.dataset.filter);
+});
+platformSelect.addEventListener("change", () => {
+    const activeButton = document.querySelector("[data-filter][aria-pressed='true']") || { dataset: { filter: "all" } };
+    filterCards(activeButton.dataset.filter);
+})
 
 //reset functions on page reload, ideally this would stay
 
