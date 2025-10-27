@@ -128,7 +128,7 @@ button:hover {
     top: 8px;
     left: 8px;
     font-size: 20px;
-    color: white;
+    color: gold;
     opacity: 0;
     transition-duration: 0.5s;
 }
@@ -139,9 +139,17 @@ button:hover {
 
 .rate-symbol:before {
     content: "☺";
+    text-shadow: 2px 0 10px black,
+    -2px 0 10px black,
+    0 2px 10px black,
+    0 -2px 10px black;
 }
 .rate-symbol-filled:before {
     content: "☻";
+    text-shadow: 2px 0 10px black,
+    -2px 0 10px black,
+    0 2px 10px black,
+    0 -2px 10px black;
 }
 
 .rate-symbol:hover, .rate-symbol-filled:hover {
