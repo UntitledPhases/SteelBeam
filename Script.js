@@ -31,6 +31,16 @@ const games = [
 const library = document.querySelector(".library"); // Find library container
 
 
+function setRatingFilled(container, i) {
+    [].forEach.call(container.children, function(sym, j) {
+        if (j <= i) {
+            sym.classList.add("rate-symbol-filled");
+        } else {
+            sym.classList.remove("rate-symbol-filled");
+        }
+    })
+}
+
 games.forEach((game, i) => {
     game.id = i + 1; //assign id to each game first, so we can use it when creating cards
     const card = document.createElement("a"); //creates card element for each game in the array
@@ -39,15 +49,40 @@ games.forEach((game, i) => {
     card.dataset.id = game.id //gives each card the same ID as the game it represents, we need this to actually associate cards with games
     card.innerHTML =
         `<img src="${game.img}" alt="${game.title}">`; //Fill card element with game image and alt info
+
+    // ratings
+    let rateContainer = document.createElement("div");
+    rateContainer.classList.add("rate-container");
+    for (let i = 0; i < 5; i++) {
+        let rateSymbol = document.createElement("span");
+        rateSymbol.classList.add("rate-symbol");
+        rateSymbol.addEventListener("click", (event) => {
+            let data = getData();
+            let clear = false;
+            if (data.meta.rating[(game.id)] == i + 1) {
+                delete data.meta.rating[(game.id)];
+                clear = true;
+            } else {
+                data.meta.rating[(game.id)] = i + 1;
+            }
+
+            setRatingFilled(rateContainer, clear ? -1 : i);
+
+            saveData(data);
+        });
+        rateContainer.appendChild(rateSymbol);
+    }
+    card.appendChild(rateContainer);
+
     library.appendChild(card);  // Fill library container with cards, library is wrapper for all cards
 
     //looked at this code on thursday for 5 hours straight, gave up, locked in on saturday
 card.addEventListener("click", (event) => {
     event.preventDefault();
     document.getElementById("info-title").textContent = game.title;
-    document.getElementById("info-genre").textContent = 
+    document.getElementById("info-genre").textContent =
     game.genre.length ? game.genre.join(", ") : "N/A";
-    document.getElementById("info-platform").textContent = 
+    document.getElementById("info-platform").textContent =
     game.platform.length ? game.platform.join(", ") : "N/A";
     });
 })
@@ -56,17 +91,17 @@ card.addEventListener("click", (event) => {
 const KEY = "game_data"; //key for game data, just so we don't have to type it out every time we update the localStorage
 const DATA = {
     collections: {                      //Collections and platform hold arrays, they simply hold IDs of games that belong to each category
-        favorites: [],                  
+        favorites: [],
         wishlist: [],                   //favorites: [3, 12, 18, etc.]
         completed: []                   //each number is the ID associated with a game
     },                                  //so if a game is added to favorites, add the game ID to the favorites array
-                                        
+
     platform: {                         //same for platform, each array stores game IDs that belong to that platform
         PC: [],
         PlayStation: [],
         Xbox: [],
         Switch: []
-    }, 
+    },
 
     genre: {                         //same for platform, each array stores game IDs that belong to that platform
         Shooter: [],
@@ -88,7 +123,7 @@ const DATA = {
 //ngl I feel like properly storing things in this is going to be a nightmare but we got this guys we can do anything
 // ok now to actually create the thing in localStorage
 function initializeStorage() {
-    if (!localStorage.getItem(KEY)) {   //if the key doesn't already exist in localStorage 
+    if (!localStorage.getItem(KEY)) {   //if the key doesn't already exist in localStorage
         localStorage.setItem(KEY, JSON.stringify(DATA)); //store the DATA key array thing in it
     }
 }
@@ -138,13 +173,13 @@ allPlatforms.forEach(p => {
 });
 
 function filterCards(filter) {
-    const get = getData(); //get fresh copy of data from 
+    const get = getData(); //get fresh copy of data from
     const selectedGenre = genreSelect.value;
     const selectedPlatform = platformSelect.value;
 
     cards.forEach(card => {
         const id = Number(card.dataset.id); //get the game ID from the card, convert from string to number
-        
+
         const game = games.find(g => g.id === id);
         let visible = true;
 
@@ -164,7 +199,7 @@ function filterCards(filter) {
         if (selectedGenre !== "all" && !game.genre.includes(selectedGenre)) {
             visible = false;
         }
-        
+
         if (selectedPlatform !== "all" && !game.platform.includes(selectedPlatform)) {
             visible = false;
         }
@@ -263,7 +298,20 @@ function restoreCardBorder(){ //cards weren't keeping color on page refresh so t
     })
 }
 
+function restoreRatings() {
+    const data = getData();
+    cards.forEach(card=>{
+        const gameId=Number(card.dataset.id);
+        let container = card.querySelector(".rate-container");
+        if (gameId in data.meta.rating) {
+            setRatingFilled(container, data.meta.rating[gameId] - 1);
+        }
+    });
+}
+
 //initially show all cards
 filterCards("all");
 //keep card border colors
 restoreCardBorder();
+//keep ratings
+restoreRatings();

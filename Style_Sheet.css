@@ -122,3 +122,29 @@ button:hover {
     box-shadow: 0 0 10px whitesmoke;
     filter: brightness(130%);
 }
+
+.rate-container {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    font-size: 20px;
+    color: white;
+    opacity: 0;
+    transition-duration: 0.5s;
+}
+
+.card:hover .rate-container {
+    opacity: 1;
+}
+
+.rate-symbol:before {
+    content: "☺";
+}
+.rate-symbol-filled:before {
+    content: "☻";
+}
+
+.rate-symbol:hover, .rate-symbol-filled:hover {
+    color: red;
+}
+
