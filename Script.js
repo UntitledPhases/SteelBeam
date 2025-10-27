@@ -1,14 +1,14 @@
 //fill this up with all the games that we will be using
 //need to create some sort of similar storage structure in localStorage, need to also add in game genre and platform,
 const games = [
-    { title: "The Binding of Isaac: Rebirth", img: "Images/Isaac.png", platform: ["PC"], genre: ["Shooter", "RPG", "Roguelike", "Action"]},
-    { title: "Battlefield 6", img: "https://placehold.co/200x266?text=Battlefield+6", platform: ["PC","Xbox", "Playstation"], genre: ["Shooter", "Action"] },
+    { title: "The Binding of Isaac: Rebirth", img: "Images/Isaac.png", platform: ["PC", "Switch", "Xbox", "Playstation"], genre: ["Shooter", "RPG", "Roguelike", "Action"]},
+    { title: "Battlefield 6", img: "https://placehold.co/200x266?text=Battlefield+6", platform: ["PC", "Xbox", "Playstation"], genre: ["Shooter", "Action"] },
     { title: "Hades", img: "https://placehold.co/200x266?text=Hades", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["RPG", "Roguelike", "Action"] },
     { title: "Noita", img: "Images/Noita.png", platform: ["PC"], genre: ["Adventure", "RPG", "Roguelike", "Action"] },
     { title: "Hollow Knight", img: "Images/hollowknight.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure"] },
     { title: "Terraria", img: "Images/Terraria.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure", "RPG"] },
     { title: "Celeste", img: "https://placehold.co/200x266?text=Celeste", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure", "Platformer"] },
-    { title: "Dark Souls 3", img: "https://placehold.co/200x266?text=Dark+Souls+3", platform: ["PC",,"Xbox", "Playstation"], genre: ["RPG"] },
+    { title: "Dark Souls 3", img: "https://placehold.co/200x266?text=Dark+Souls+3", platform: ["PC","Xbox", "Playstation"], genre: ["RPG"] },
     { title: "Dead Cells", img: "https://placehold.co/200x266?text=Dead+Cells", platform: ["PC", "Playstation"], genre: ["Platformer", "Roguelike"] },
     { title: "Cuphead", img: "Images/Cuphead.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Shooter", "Platformer", "Action"] },
     { title: "Cyberpunk 2077", img: "Images/cyberpunk.png", platform: ["PC","Xbox", "Playstation"], genre: ["RPG", "Action"] },
