@@ -59,11 +59,11 @@ games.forEach((game, i) => {
         rateSymbol.addEventListener("click", (event) => {
             let data = getData();
             let clear = false;
-            if (data.meta.rating[(game.id)] == i + 1) {
-                delete data.meta.rating[(game.id)];
+            if (data.rating[(game.id)] == i + 1) {
+                delete data.rating[(game.id)];
                 clear = true;
             } else {
-                data.meta.rating[(game.id)] = i + 1;
+                data.rating[(game.id)] = i + 1;
             }
 
             setRatingFilled(rateContainer, clear ? -1 : i);
@@ -96,28 +96,7 @@ const DATA = {
         completed: []                   //each number is the ID associated with a game
     },                                  //so if a game is added to favorites, add the game ID to the favorites array
 
-    platform: {                         //same for platform, each array stores game IDs that belong to that platform
-        PC: [],
-        PlayStation: [],
-        Xbox: [],
-        Switch: []
-    },
-
-    genre: {                         //same for platform, each array stores game IDs that belong to that platform
-        Shooter: [],
-        Adventure: [],
-        RPG: [],
-        Switch: [],
-        Platformer: [],
-        Racing: [],
-        Action: [],
-        Roguelike: []
-    },
-
-    meta: {                               //meta holds pairs of values, game ID maps to value
-        rating: {},                       //rating {<gameID>: 3.5, <gameID>:5.0, etc.}
-        hoursPlayed: {}                   //hoursPlayed {<gameID>: 12, <gameID>: 45, etc.}
-    }
+    rating: {},                          //rating {<gameID>: 3.5, <gameID>:5.0, etc.}                  //hoursPlayed {<gameID>: 12, <gameID>: 45, etc.}
 };
 
 //ngl I feel like properly storing things in this is going to be a nightmare but we got this guys we can do anything
@@ -303,8 +282,8 @@ function restoreRatings() {
     cards.forEach(card=>{
         const gameId=Number(card.dataset.id);
         let container = card.querySelector(".rate-container");
-        if (gameId in data.meta.rating) {
-            setRatingFilled(container, data.meta.rating[gameId] - 1);
+        if (gameId in data.rating) {
+            setRatingFilled(container, data.rating[gameId] - 1);
         }
     });
 }
