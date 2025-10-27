@@ -1,23 +1,23 @@
 //fill this up with all the games that we will be using
 //need to create some sort of similar storage structure in localStorage, need to also add in game genre and platform,
 const games = [
-    { title: "The Binding of Isaac: Rebirth", img: "Images/Isaac.png", platform: ["PC"], genre: ["Shooter", "RPG"]},
-    { title: "Battlefield 6", img: "https://placehold.co/200x266?text=Battlefield+6", platform: ["PC","Xbox", "Playstation"], genre: ["Shooter"] },
-    { title: "Hades", img: "https://placehold.co/200x266?text=Hades", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["RPG"] },
-    { title: "Noita", img: "Images/Noita.png", platform: ["PC"], genre: ["Adventure", "RPG"] },
+    { title: "The Binding of Isaac: Rebirth", img: "Images/Isaac.png", platform: ["PC"], genre: ["Shooter", "RPG", "Roguelike", "Action"]},
+    { title: "Battlefield 6", img: "https://placehold.co/200x266?text=Battlefield+6", platform: ["PC","Xbox", "Playstation"], genre: ["Shooter", "Action"] },
+    { title: "Hades", img: "https://placehold.co/200x266?text=Hades", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["RPG", "Roguelike", "Action"] },
+    { title: "Noita", img: "Images/Noita.png", platform: ["PC"], genre: ["Adventure", "RPG", "Roguelike", "Action"] },
     { title: "Hollow Knight", img: "Images/hollowknight.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure"] },
     { title: "Terraria", img: "Images/Terraria.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure", "RPG"] },
     { title: "Celeste", img: "https://placehold.co/200x266?text=Celeste", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure", "Platformer"] },
     { title: "Dark Souls 3", img: "https://placehold.co/200x266?text=Dark+Souls+3", platform: ["PC",,"Xbox", "Playstation"], genre: ["RPG"] },
-    { title: "Dead Cells", img: "https://placehold.co/200x266?text=Dead+Cells", platform: ["PC", "Playstation"], genre: ["Platformer"] },
-    { title: "Cuphead", img: "Images/Cuphead.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: [] },
-    { title: "Cyberpunk 2077", img: "Images/cyberpunk.png", platform: ["PC","Xbox", "Playstation"], genre: ["RPG"] },
-    { title: "God of War", img: "https://placehold.co/200x266?text=God+of+War", platform: ["PC", "Playstation"], genre: [] },
-    { title: "Risk of Rain 2", img: "Images/RoR2.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: [] },
+    { title: "Dead Cells", img: "https://placehold.co/200x266?text=Dead+Cells", platform: ["PC", "Playstation"], genre: ["Platformer", "Roguelike"] },
+    { title: "Cuphead", img: "Images/Cuphead.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Shooter", "Platformer", "Action"] },
+    { title: "Cyberpunk 2077", img: "Images/cyberpunk.png", platform: ["PC","Xbox", "Playstation"], genre: ["RPG", "Action"] },
+    { title: "God of War", img: "https://placehold.co/200x266?text=God+of+War", platform: ["PC", "Playstation"], genre: ["Adventure", "RPG", "Action"] },
+    { title: "Risk of Rain 2", img: "Images/RoR2.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Roguelike", "Action"] },
     { title: "Stardew Valley", img: "Images/Stardew.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure"] },
-    { title: "Team Fortress 2", img: "Images/TF2.png", platform: ["PC"], genre: ["Shooter"] },
-    { title: "Heroes of Hammerwatch", img: "Images/HoH.png", platform: ["PC"], genre: ["RPG"] },
-    { title: "Tokyo Xtreme Racer", img: "Images/tokyoxtreme.png", platform: ["PC", "Playstation"], genre: [] }
+    { title: "Team Fortress 2", img: "Images/TF2.png", platform: ["PC"], genre: ["Shooter", "Action"] },
+    { title: "Heroes of Hammerwatch", img: "Images/HoH.png", platform: ["PC"], genre: ["RPG", "Action", "Adventure"] },
+    { title: "Tokyo Xtreme Racer", img: "Images/tokyoxtreme.png", platform: ["PC", "Playstation"], genre: ["Racing"] }
 ];
 
 //sort games alphabetically by title
@@ -73,7 +73,10 @@ const DATA = {
         Adventure: [],
         RPG: [],
         Switch: [],
-        Platformer: []
+        Platformer: [],
+        Racing: [],
+        Action: [],
+        Roguelike: []
     },
 
     meta: {                               //meta holds pairs of values, game ID maps to value
