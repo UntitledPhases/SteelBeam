@@ -59,11 +59,11 @@ games.forEach((game, i) => {
         rateSymbol.addEventListener("click", (event) => {
             let data = getData();
             let clear = false;
-            if (data.rating[(game.id)] == i + 1) {
-                delete data.rating[(game.id)];
+            if (data.meta.rating[(game.id)] == i + 1) {
+                delete data.meta.rating[(game.id)];
                 clear = true;
             } else {
-                data.rating[(game.id)] = i + 1;
+                data.meta.rating[(game.id)] = i + 1;
             }
 
             setRatingFilled(rateContainer, clear ? -1 : i);
@@ -96,7 +96,9 @@ const DATA = {
         completed: []                   //each number is the ID associated with a game
     },                                  //so if a game is added to favorites, add the game ID to the favorites array
 
-    rating: {},                          //rating {<gameID>: 3.5, <gameID>:5.0, etc.}                  //hoursPlayed {<gameID>: 12, <gameID>: 45, etc.}
+    meta: {                            
+        rating: {},                      
+    }                        
 };
 
 //ngl I feel like properly storing things in this is going to be a nightmare but we got this guys we can do anything
