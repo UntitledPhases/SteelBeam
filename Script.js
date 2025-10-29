@@ -51,7 +51,7 @@ games.forEach((game, i) => {
         `<img src="${game.img}" alt="${game.title}">`; //Fill card element with game image and alt info
 
     // ratings
-    let rateContainer = document.createElement("div");
+    let rateContainer = document.createElement("div"); //Alex did this and its magic no clue how the iteration works tbh
     rateContainer.classList.add("rate-container");
     for (let i = 0; i < 5; i++) {
         let rateSymbol = document.createElement("span");
@@ -59,11 +59,11 @@ games.forEach((game, i) => {
         rateSymbol.addEventListener("click", (event) => {
             let data = getData();
             let clear = false;
-            if (data.meta.rating[(game.id)] == i + 1) {
-                delete data.meta.rating[(game.id)];
+            if (data.rating[(game.id)] == i + 1) {
+                delete data.rating[(game.id)];
                 clear = true;
             } else {
-                data.meta.rating[(game.id)] = i + 1;
+                data.rating[(game.id)] = i + 1;
             }
 
             setRatingFilled(rateContainer, clear ? -1 : i);
@@ -95,10 +95,8 @@ const DATA = {
         wishlist: [],                   //favorites: [3, 12, 18, etc.]
         completed: []                   //each number is the ID associated with a game
     },                                  //so if a game is added to favorites, add the game ID to the favorites array
-
-    meta: {                            
-        rating: {},                      
-    }                        
+                            
+    rating: {},                         //ratings stored as key value pair, gameID maps to rating value                                            
 };
 
 //ngl I feel like properly storing things in this is going to be a nightmare but we got this guys we can do anything
