@@ -10,3 +10,5 @@ Username: test
 Password: password123
 
 index for apache use login.php
+
+RAWG API Key: 4440e3e77e974156b392821e6186e4e0
