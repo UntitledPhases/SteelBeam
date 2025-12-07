@@ -16,6 +16,7 @@ if ($game_id <= 0) {
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="Style_Sheet.css">
+        <script src="state.js" defer></script>
         <script src="game_details.js" defer></script>
         <title>Game Details - SteelBeam</title>
     </head>

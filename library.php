@@ -8,6 +8,7 @@ require_once 'db.php';
         <meta charset="UTF-8">
 
         <link rel="stylesheet" href="Style_Sheet.css">
+        <script src="state.js" defer></script>
         <script src="Script.js" defer></script>
         <title>SteelBeam</title>
     </head>
