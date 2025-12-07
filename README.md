@@ -8,3 +8,5 @@ Also add database to PHP admin
 for testing use:
 Username: test
 Password: password123
+
+index for apache use login.php

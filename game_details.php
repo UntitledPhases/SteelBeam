@@ -1,0 +1,82 @@
+<?php
+$dsn = 'mysql:host=localhost;dbname=steelbeam';
+$username = 'mgs_user';
+$password = 'pa55word';
+
+try {
+    $db = new PDO($dsn, $username, $password);
+
+    #$query = "SELECT MovieID, MovieTitle, ReleaseDate, Genre FROM movie";
+} catch (PDOException $e) {
+    $error_message = $e->getMessage();
+    include('database_error.php');
+    exit();
+}
+
+//Get game ID from URL parameter
+$game_id = isset($_GET['game_id']) ? intval($_GET['game_id']) : 0;
+
+//If no valid game ID, redirect back to main page
+if ($game_id <= 0) {
+    header("Location: Main_Page.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="Style_Sheet.css">
+        <script src="game_details.js" defer></script>
+        <title>Game Details - SteelBeam</title>
+    </head>
+    <body>
+        <img src="Images/SteelBeamLogo.png" alt="logo" class="logo">
+        
+        <div class="back-button-container">
+            <a href="Main_Page.php" class="back-button">← Back to Catalog</a>
+        </div>
+
+        <div class="game-details-container">
+            <div class="game-image-section">
+                <img id="game-image" src="" alt="Game Cover">
+            </div>
+            
+            <div class="game-info-section">
+                <h1 id="game-title">Loading...</h1>
+                
+                <div class="game-metadata">
+                    <p><strong>Genre:</strong> <span id="game-genre">N/A</span></p>
+                    <p><strong>Platform:</strong> <span id="game-platform">N/A</span></p>
+                </div>
+
+                <div class="rating-section">
+                    <h3>Rate this game:</h3>
+                    <div class="rate-container-details"></div>
+                </div>
+
+                <div class="collection-section">
+                    <h3>Add to collection:</h3>
+                    <div class="collection-buttons">
+                        <button id="btn-favorites" class="collection-btn btn-favorites">
+                            Favorites
+                        </button>
+                        <button id="btn-wishlist" class="collection-btn btn-wishlist">
+                            Wishlist
+                        </button>
+                        <button id="btn-completed" class="collection-btn btn-completed">
+                            Completed
+                        </button>
+                        <button id="btn-remove" class="collection-btn btn-remove">
+                            Remove from Collections
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hidden input to pass game_id to JavaScript -->
+        <input type="hidden" id="current-game-id" value="<?php echo $game_id; ?>">
+    </body>
+</html>

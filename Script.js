@@ -45,7 +45,8 @@ games.forEach((game, i) => {
     card.innerHTML =
         `<img src="${game.img}" alt="${game.title}">`; //Fill card element with game image and alt info
 
-    // ratings
+    // ratings - moved to details
+    /*
     let rateContainer = document.createElement("div"); //Alex did this and its magic no clue how the iteration works tbh
     rateContainer.classList.add("rate-container");
     for (let i = 0; i < 5; i++) {
@@ -68,17 +69,22 @@ games.forEach((game, i) => {
         rateContainer.appendChild(rateSymbol);
     }
     card.appendChild(rateContainer);
+    */
 
     library.appendChild(card);  // Fill library container with cards, library is wrapper for all cards
 
     //looked at this code on thursday for 5 hours straight, gave up, locked in on saturday
 card.addEventListener("click", (event) => {
     event.preventDefault();
+    /*
     document.getElementById("info-title").textContent = game.title;
     document.getElementById("info-genre").textContent =
     game.genre.length ? game.genre.join(", ") : "N/A";
     document.getElementById("info-platform").textContent =
     game.platform.length ? game.platform.join(", ") : "N/A";
+    */
+    //navigate to game_details php on click, use id as parameter
+    window.location.href = `game_details.php?game_id=${game.id}`;
     });
 })
 //functions to create keys and store them in localStorage for different collections
@@ -204,6 +210,7 @@ platformSelect.addEventListener("change", () => {
 //this should (hope) cycle cards through each collection when double clicked
 //border color by collection in css file
 //can't really have games in more than one though.. maybe later
+/*
 cards.forEach(card =>{
     card.addEventListener("dblclick", (c1) =>{
         c1.preventDefault() //don't really need but just incase
@@ -252,6 +259,7 @@ cards.forEach(card =>{
 
     });
 });
+*/
 //works mostly ok but sometimes you need to hover off when changing multiple times, not important
 
 function restoreCardBorder(){ //cards weren't keeping color on page refresh so this exists
@@ -271,7 +279,7 @@ function restoreCardBorder(){ //cards weren't keeping color on page refresh so t
         }
     })
 }
-
+/* - not on main page no longer need here
 function restoreRatings() {
     const data = getData();
     cards.forEach(card=>{
@@ -282,10 +290,11 @@ function restoreRatings() {
         }
     });
 }
+*/
 
 //initially show all cards
 filterCards("all");
 //keep card border colors
 restoreCardBorder();
 //keep ratings
-restoreRatings();
+//restoreRatings();

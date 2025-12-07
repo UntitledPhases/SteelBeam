@@ -27,8 +27,8 @@ try {
     <body>
         <img src="Images/SteelBeamLogo.png" alt="logo" class="logo">
         <h2>Catalog</h2>
-        <h5>Double click card to mark as favorite, wishlist, and completed</h5>
-        <h5>Games can be rated on the top left of every card</h5>
+        <h5>Click a card to view details</h5>
+        <h5>Games can be rated in the details page</h5>
 
         <!--Add way to filter games based on collection-->
         <div class="filters">
@@ -44,12 +44,6 @@ try {
             <select id="platform-filter">
                 <option value="all">All Platforms</option>
             </select>
-        </div>
-
-        <div class="info-box">
-            <h2 id="info-title">select a game</h2>
-            <p><strong>Genre:</strong> <span id="info-genre">N/A</span></p>
-            <p><strong>Platform:</strong> <span id="info-platform">N/A</span></p>
         </div>
 
         <!--Actual game cards-->
