@@ -29,10 +29,15 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     <h2>SteelBeam Login</h2>
 <body>
     <form method="POST">
-        <h4>Username:</h4>
-        <input type="text" name="username"><br><br>
-        <h4>Password:</h4>
-        <input type="password" name="password"><br><br>
+        <label>Username:
+            <input type="text" name="username"><br><br>
+        </label>
+        <br>
+
+        <label>Password:
+            <input type="password" name="password"><br><br>
+        </label>
+        <br>
 
         <button type="submit">Log in</button>
     </form>

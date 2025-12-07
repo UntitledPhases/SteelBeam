@@ -36,10 +36,14 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     <h2>Create New User</h2>
 <body>
     <form method="POST">
-        Username:<br>
-        <input type="text" name="username"><br><br>
-        Password:<br>
-        <input type="password" name="password"><br><br>
+        <label>Username:
+            <input type="text" name="username"><br><br>
+        </label>
+        <br>
+        <label>Password:
+            <input type="password" name="password"><br><br>
+        </label>
+        <br>
 
         <button type="submit" formaction="new_user.php">Create</button>
     </form>
