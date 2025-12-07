@@ -10,10 +10,6 @@ CREATE TABLE users (
     password VARCHAR(50) NOT NULL
 );
 
--- INSERT USER
-INSERT INTO users (user_id, username, password) VALUES
-    (1, 'test', 'password123');
-
 -- CREATE GAMES TABLE
 CREATE TABLE games (
     game_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
