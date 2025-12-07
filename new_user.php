@@ -6,7 +6,8 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 
     //Check if username already exists
     $check = "SELECT * FROM users WHERE username =?";
-    $stmt = $db->prepare($check)->execute([$user]);
+    $stmt = $db->prepare($check);
+    $stmt->execute([$user]);    
     $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
     
     //Tiny script to show alert and redirect back if user exists
@@ -32,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         <title >Login</title>
     </head>
 
-    <h2>SteelBeam Login</h2>
+    <h2>Create New User</h2>
 <body>
     <form method="POST">
         Username:<br>
