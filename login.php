@@ -22,18 +22,23 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 <!DOCTYPE html>
 <html>
     <head>
-    <title >Login</title>
+        <link rel="stylesheet" href="Style_Sheet.css">
+        <title >Login</title>
     </head>
 
     <h2>StealBeam Login</h2>
 <body>
     <form method="POST">
         Username:<br>
-        <input type="text" name="username" required><br><br>
+        <input type="text" name="username"><br><br>
         Password:<br>
-        <input type="password" name="password" required><br><br>
+        <input type="password" name="password"><br><br>
 
         <button type="submit">Log in</button>
     </form>
+    <br>
+    <a href="new_user.php">
+        <button type="button">New user</button>
+    </a>
 </body>
 </html>
