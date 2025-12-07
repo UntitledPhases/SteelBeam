@@ -12,3 +12,9 @@ Password: password123
 index for apache use login.php
 
 RAWG API Key: 4440e3e77e974156b392821e6186e4e0
+
+RAWG queries: https://api.rawg.io/api/games?key=4440e3e77e974156b392821e6186e4e0&search=*ENTER NAME OF GAME HERE*
+examples:     https://api.rawg.io/api/games?key=4440e3e77e974156b392821e6186e4e0&search=minecraft
+              https://api.rawg.io/api/games?key=4440e3e77e974156b392821e6186e4e0&search=the-binding-of-isaac-repentance
+
+RAWG also provides images
