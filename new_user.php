@@ -8,7 +8,8 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $check = "SELECT * FROM users WHERE username =?";
     $stmt = $db->prepare($check)->execute([$user]);
     $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
-
+    
+    //Tiny script to show alert and redirect back if user exists
     if ($existingUser) {
         echo "<script>alert('Username already exists! Please choose another.'); window.location='new_user.php';</script>";
         exit();
@@ -18,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
     $db->prepare($sql)->execute([$user, $pass]);
 
-    //tiny script to show success message and redirect to login page
+    //Tiny script to show success message and redirect to login page
     echo "<script>alert('User created successfully!'); window.location='login.php';</script>";
     exit();
 }
