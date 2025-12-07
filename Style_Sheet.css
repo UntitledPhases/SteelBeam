@@ -16,8 +16,10 @@ body {
     color: rgb(158, 185, 210);
     text-align: center;
     text-shadow: 0 5px 5px rgb(0, 0, 0); 
-    background: #2f3540 url('https://www.transparenttextures.com/patterns/brushed-alum.png');
-    background-size: 300px;
+    background-color: #00151b;
+    background-image: url('images/gun-metal.png');
+    background-size: 10px;
+
 }
 
 input[type="text"], input[type="password"] {
