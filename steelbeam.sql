@@ -1,4 +1,4 @@
---I found what I put in orignally so just use this
+-- I found what I put in orignally so just use this
 
 -- DROP AND CREATE DATABASE
 USE SteelBeam;
