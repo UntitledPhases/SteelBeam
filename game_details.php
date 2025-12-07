@@ -18,7 +18,7 @@ $game_id = isset($_GET['game_id']) ? intval($_GET['game_id']) : 0;
 
 //If no valid game ID, redirect back to main page
 if ($game_id <= 0) {
-    header("Location: Main_Page.php");
+    header("Location: library.php");
     exit();
 }
 ?>
@@ -35,7 +35,7 @@ if ($game_id <= 0) {
         <img src="Images/SteelBeamLogo.png" alt="logo" class="logo">
         
         <div class="back-button-container">
-            <a href="Main_Page.php" class="back-button">← Back to Catalog</a>
+            <a href="library.php" class="back-button">← Back to Catalog</a>
         </div>
 
         <div class="game-details-container">

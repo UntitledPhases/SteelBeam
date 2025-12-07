@@ -54,7 +54,7 @@ const currentGame = games.find(g => g.id === gameId);
 
 //If game not found, redirect back
 if (!currentGame) {
-    window.location.href = "Main_Page.php";
+    window.location.href = "library.php";
 }
 
 //Populate the page with game information

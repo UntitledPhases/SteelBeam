@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($result && $pass === $result["password"]) {
-        header("Location: Main_Page.php?user_id=" . $result["user_id"]);
+        header("Location: library.php?user_id=" . $result["user_id"]);
         exit();
 } else {
     $error = "Invalid username or password!";
