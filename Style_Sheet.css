@@ -4,6 +4,13 @@ html, body {
     height: 100%;
 }
 
+header {
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    margin: 20px;
+}
+
 body {
     font-family: Arial, sans-serif;
     color: rgb(158, 185, 210);
