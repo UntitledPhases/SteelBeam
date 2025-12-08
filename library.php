@@ -40,12 +40,11 @@ $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <select id="platform-filter">
                 <option value="all">All Platforms</option>
             </select>
+            <a href="add_game.php">
+                <button type="button" class="add-game-button">+ Add Game</button>
+            </a>
         </div>
-
-        <div class="add-game-button-container">
-            <a href="add_game.php" class="add-game-button">Add Game</a>
-        </div>
-
+        
         <!--Actual game cards-->
         <!--Replace placeholder images with actual images which need to be placed in images folder-->
         <!--Use https://developer.mozilla.org/en-US/ to figure out what things do-->

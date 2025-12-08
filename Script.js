@@ -45,35 +45,8 @@ games.forEach((game, i) => {
     card.innerHTML =
         `<img src="${game.img}" alt="${game.title}">`; //Fill card element with game image and alt info
 
-    // ratings - moved to details
-    /*
-    let rateContainer = document.createElement("div"); //Alex did this and its magic no clue how the iteration works tbh
-    rateContainer.classList.add("rate-container");
-    for (let i = 0; i < 5; i++) {
-        let rateSymbol = document.createElement("span");
-        rateSymbol.classList.add("rate-symbol");
-        rateSymbol.addEventListener("click", (event) => {
-            let data = getData();
-            let clear = false;
-            if (data.rating[(game.id)] == i + 1) {
-                delete data.rating[(game.id)];
-                clear = true;
-            } else {
-                data.rating[(game.id)] = i + 1;
-            }
-
-            setRatingFilled(rateContainer, clear ? -1 : i);
-
-            saveData(data);
-        });
-        rateContainer.appendChild(rateSymbol);
-    }
-    card.appendChild(rateContainer);
-    */
-
     library.appendChild(card);  // Fill library container with cards, library is wrapper for all cards
 
-    //looked at this code on thursday for 5 hours straight, gave up, locked in on saturday
 card.addEventListener("click", (event) => {
     event.preventDefault();
     /*

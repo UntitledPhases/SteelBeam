@@ -3,15 +3,15 @@ session_start();
 require_once 'db.php';
 
 //get user ID from session
-$user_id = $_SESSION['user_id'];
+$uid = $_SESSION['user_id'];
 
 header('Content-Type: application/json');
 
 
-//Pull info for this user
+//Get info for the user
 $query = "SELECT game_id, status, rating FROM games WHERE user_id = :user_id";
 $stmt = $db->prepare($query);
-$stmt->execute([':user_id' => $user_id]);
+$stmt->execute([':user_id' => $uid]);
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 //Build the new and improved data structure muahahaha
@@ -44,7 +44,7 @@ foreach ($rows as $row) {
 
 //Turn into JSON and echo to browser
 echo json_encode([
-    'user_id' => $user_id,
+    'user_id' => $uid,
     'favorites' => $favorites,
     'wishlist' => $wishlist,
     'completed' => $completed,
