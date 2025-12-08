@@ -47,10 +47,6 @@ $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <!--Replace placeholder images with actual images which need to be placed in images folder-->
         <!--Use https://developer.mozilla.org/en-US/ to figure out what things do-->
         <div class="library">
-            <?php foreach ($games as $game) { ?>
-                <a
-                    class="card
-            <?php } ?>
         </div>
 
 
