@@ -1,8 +1,6 @@
 <?php
-require_once 'db.php';
-
-//Establish session cookie to prevent UID in URL vulnerability
 session_start();
+require_once 'db.php';
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $user = $_POST["username"];
@@ -14,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($result && $pass === $result["password"]) {
-        $_SESSION['user_id'] = $result['id'];
+        $_SESSION['user_id'] = (int)$result['user_id'];
         header("Location: library.php");
         exit();
 } else {

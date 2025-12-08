@@ -1,6 +1,6 @@
 <?php
-require_once 'db.php';
 session_start();
+require_once 'db.php';
 
 //Need to be careful differentiating user ID and game ID
 $uid = $_SESSION['user_id'];
@@ -34,7 +34,7 @@ if (!is_null($gid)) {
     }
 
     //After adding restart search
-    header("Location: add_game.php" . $uid);
+    header("Location: add_game.php");
     exit();
 }
 
