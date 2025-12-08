@@ -34,6 +34,10 @@ require_once 'db.php';
             </select>
         </div>
 
+        <div class="add-game-button-container">
+            <a href="add_game.php" class="add-game-button">+ Add Game</a>
+        </div>
+
         <!--Actual game cards-->
         <!--Replace placeholder images with actual images which need to be placed in images folder-->
         <!--Use https://developer.mozilla.org/en-US/ to figure out what things do-->

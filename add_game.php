@@ -1,27 +1,31 @@
 <?php
 require_once 'db.php';
+//Need to be careful differentiating user ID and game ID
+$uid = isset($_GET["uid"]) ? intval($_GET["uid"]) : null;
 
 $query = isset($_GET["q"]) ? $_GET["q"] : null;
-$id = isset($_GET["id"]) ? $_GET["id"] : null;
+$gid = isset($_GET["gid"]) ? intval($_GET["gid"]) : null;
 $results = [];
-$context = stream_context_create(['http' => ['method' => 'GET']]);
 
-if (!is_null($id)) {
-    $response = file_get_contents("https://api.rawg.io/api/games/" . $id . "?key=4440e3e77e974156b392821e6186e4e0");
+//$context = stream_context_create(['http' => ['method' => 'GET']]);
+
+if (!is_null($gid)) {
+    $response = file_get_contents("https://api.rawg.io/api/games/" . $gid . "?key=" . $apiKey);
 
     if ($response != false) {
         $game = json_decode($response);
+
         $query = "INSERT INTO games (user_id, game_title, genre, platform) VALUES (:id, :title, :genre, :platform);";
         $stmt = $db->prepare($query);
         $stmt->execute([
-            ':id' => $game->{'id'},
-            ':title' => $game->{'name'},
-            ':genre' => $game->{'genres'}[0]->{'name'},
-            ':platform' => $game->{'platforms'}[0]->{'platform'}->{'name'},
+            ':uid' => $uid,
+            ':title' => $title
+            ':genre' => $genre
+            ':platform' => $platform
         ]);
     }
 
-    // redirect to the game page...
+    // redirect to the library page for this user
 } else if (!is_null($query)) {
     $response = file_get_contents("https://api.rawg.io/api/games?" . http_build_query([
         'key' => '4440e3e77e974156b392821e6186e4e0',
