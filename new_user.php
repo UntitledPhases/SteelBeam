@@ -9,6 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $stmt = $db->prepare($check);
     $stmt->execute([$user]);    
     $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    //Check if username or password is empty and show alert
+    if ($user === "" || $pass === "") {
+        echo "<script>alert('Username and/or Password cannot be empty!'); window.location='new_user.php';</script>";
+        exit();
+    }
     
     //Tiny script to show alert and redirect back if user exists
     if ($existingUser) {
@@ -16,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         exit();
     }
 
-    //If not existing user, insert new user into db
+    //Insert new user into database
     $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
     $db->prepare($sql)->execute([$user, $pass]);
 

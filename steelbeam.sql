@@ -1,4 +1,3 @@
--- I found what I put in orignally so just use this
 
 -- DROP AND CREATE DATABASE
 USE SteelBeam;
@@ -21,10 +20,6 @@ CREATE TABLE games (
     rating INT(2),
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
-
--- INSERT ONE GAME FOR TEST 
-INSERT INTO games (user_id, game_title, genre, platform, status, rating) VALUES
-    (1, 'Minecraft', 'Sandbox', 'PC', 'Favorites', 10);
 
 -- CREATE USERS AND GRANT PRIVILEGES
 GRANT SELECT, INSERT, DELETE, UPDATE

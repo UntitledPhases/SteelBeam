@@ -20,9 +20,7 @@ if (!is_null($gid)) {
         //moved field mapping inside this block to avoid undefined variable errors
         $title = $gameData['name'] ?? 'Unknown Title';
         $genre = $gameData['genres'][0]['name'] ?? null;
-        $platform_names = array_map(function($platform) {
-            return $platform['platform']['name'];
-        }, $gameData['platforms'] ?? []);
+        $platform_names = array_map(function($platform) {return $platform['platform']['name'];}, $gameData['platforms'] ?? []);
         $platform = join(", ", $platform_names);
 
         $query = "INSERT INTO games (user_id, game_title, genre, platform) VALUES (:uid, :title, :genre, :platform);";
