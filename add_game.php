@@ -8,7 +8,7 @@ $uid = $_SESSION['user_id'];
 $query = isset($_GET["q"]) ? $_GET["q"] : null;
 $gid = isset($_GET["gid"]) ? intval($_GET["gid"]) : null;
 $results = [];
-$response = null; #need to initialize
+$response = null; #I think we need to initialize this to avoid undefined variables when the page reloads?
 
 //If game ID provided, fetch game details and add to user's library
 if (!is_null($gid)) {
@@ -38,7 +38,7 @@ if (!is_null($gid)) {
     exit();
 }
 
-//Search or show top 12 games
+//Search and show top 24 results 
 else if (!is_null($query)) {
     $response = file_get_contents("https://api.rawg.io/api/games?" . http_build_query([
         'key' => $apiKey,

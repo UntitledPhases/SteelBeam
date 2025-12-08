@@ -3,6 +3,11 @@ session_start();
 require_once 'db.php';
 
 $uid = $_SESSION['user_id'];
+
+//Fetch user's game library
+$stmt = $db->prepare("SELECT game_id, game_title, genre, platform FROM games WHERE user_id = :uid");
+$stmt->execute([':uid' => $uid]);
+$games = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
