@@ -1,9 +1,10 @@
 <?php
 //This just includes the database connection so we dont have to rewrite it for every php file
 require_once 'db.php';
+session_start();
 
-//Get user ID from url, yes I know having user ID in url can be a vulnerability but its a small project :'(
-$user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
+//get user ID from session
+$user_id = $_SESSION['user_id'];
 
 header('Content-Type: application/json');
 

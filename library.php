@@ -1,5 +1,7 @@
 <?php
 require_once 'db.php';
+session_start();
+$uid = $_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +37,7 @@ require_once 'db.php';
         </div>
 
         <div class="add-game-button-container">
-            <a href="add_game.php" class="add-game-button">+ Add Game</a>
+            <a href="add_game.php" class="add-game-button">Add Game</a>
         </div>
 
         <!--Actual game cards-->

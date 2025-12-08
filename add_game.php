@@ -1,11 +1,14 @@
 <?php
 require_once 'db.php';
+session_start();
+
 //Need to be careful differentiating user ID and game ID
-$uid = isset($_GET["uid"]) ? intval($_GET["uid"]) : null;
+$uid = $_SESSION['user_id'];
 
 $query = isset($_GET["q"]) ? $_GET["q"] : null;
 $gid = isset($_GET["gid"]) ? intval($_GET["gid"]) : null;
 $results = [];
+$response = null; #need to initialize
 
 //If game ID provided, fetch game details and add to user's library
 if (!is_null($gid)) {
@@ -31,7 +34,7 @@ if (!is_null($gid)) {
     }
 
     //After adding restart search
-    header("Location: add_game.php?uid=" . $uid);
+    header("Location: add_game.php" . $uid);
     exit();
 }
 
@@ -85,7 +88,7 @@ if ($response != false) {
             <td><?php echo $res->{'released'}; ?></td>
             <td>Rating: <?php echo $res->{'rating'}; ?></td>
             <td><form action="" method="get">
-                <input type="hidden" name="id" value="<?php echo $res->{'id'} ?>" />
+                <input type="hidden" name="gid" value="<?php echo $res->{'id'} ?>" />
                 <input type="submit" value="Add" />
             </form></td>
         </tr>
