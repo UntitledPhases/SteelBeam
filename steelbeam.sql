@@ -1,5 +1,7 @@
 
 -- DROP AND CREATE DATABASE
+DROP DATABASE IF EXISTS SteelBeam;
+CREATE DATABASE SteelBeam;
 USE SteelBeam;
 
 -- CREATE USERS TABLE
@@ -16,7 +18,7 @@ CREATE TABLE games (
     game_title VARCHAR(100) NOT NULL,
     genre VARCHAR(30),
     platform VARCHAR(30),
-    status ENUM('Favorites', 'Wishlist', 'Completed') DEFAULT 'Wishlist',
+    status ENUM('Favorites', 'Wishlist', 'Completed') DEFAULT NULL,
     rating INT(2),
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
