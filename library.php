@@ -22,9 +22,7 @@ $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </head>
     <body>
         <img src="Images/SteelBeamLogo.png" alt="logo" class="logo">
-        <h2>Catalog</h2>
-        <h5>Click a card to view details</h5>
-        <h5>Games can be rated in the details page</h5>
+        <h1>Catalog</h1>
 
         <!--Add way to filter games based on collection-->
         <div class="filters">
@@ -48,7 +46,12 @@ $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <!--Actual game cards-->
         <!--Replace placeholder images with actual images which need to be placed in images folder-->
         <!--Use https://developer.mozilla.org/en-US/ to figure out what things do-->
-        <div class="library"></div>
+        <div class="library">
+            <?php foreach ($games as $game) { ?>
+                <a
+                    class="card
+            <?php } ?>
+        </div>
 
 
     </body>

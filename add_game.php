@@ -43,7 +43,7 @@ else if (!is_null($query)) {
     $response = file_get_contents("https://api.rawg.io/api/games?" . http_build_query([
         'key' => $apiKey,
         'search' => $query,
-        'page_size' => 24 # Show only top 24 results
+        'page_size' => 24, # Show only top 24 results
     ]));
 }
 
