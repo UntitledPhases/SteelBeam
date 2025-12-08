@@ -20,7 +20,10 @@ if (!is_null($gid)) {
         //moved field mapping inside this block to avoid undefined variable errors
         $title = $gameData['name'] ?? 'Unknown Title';
         $genre = $gameData['genres'][0]['name'] ?? null;
-        $platform = $gameData['platforms'][0]['platform']['name'] ?? null;
+        $platform_names = array_map(function($platform) {
+            return $platform['platform']['name'];
+        }, $gameData['platforms'] ?? []);
+        $platform = join(", ", $platform_names);
 
         $query = "INSERT INTO games (user_id, game_title, genre, platform) VALUES (:uid, :title, :genre, :platform);";
 
@@ -80,7 +83,8 @@ if ($response != false) {
             <input type="text" name="q" placeholder="Search RAWG..." value="<?php echo $query; ?>" required />
             <input type="submit" value="Go!" />
         </form>
-
+        <br><br>
+        <center>
         <table>
         <?php foreach ($results as $res) { ?>
         <tr>
@@ -94,5 +98,6 @@ if ($response != false) {
         </tr>
         <?php } ?>
         </table>
+        </center>
     </body>
 </html>
