@@ -19,8 +19,8 @@ if (!is_null($gid)) {
         $stmt = $db->prepare($query);
         $stmt->execute([
             ':uid' => $uid,
-            ':title' => $title
-            ':genre' => $genre
+            ':title' => $title,
+            ':genre' => $genre,
             ':platform' => $platform
         ]);
     }
