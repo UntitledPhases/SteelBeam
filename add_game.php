@@ -7,15 +7,20 @@ $query = isset($_GET["q"]) ? $_GET["q"] : null;
 $gid = isset($_GET["gid"]) ? intval($_GET["gid"]) : null;
 $results = [];
 
-//$context = stream_context_create(['http' => ['method' => 'GET']]);
-
+//If game ID provided, fetch game details and add to user's library
 if (!is_null($gid)) {
     $response = file_get_contents("https://api.rawg.io/api/games/" . $gid . "?key=" . $apiKey);
 
     if ($response != false) {
-        $game = json_decode($response);
+        $gameData = json_decode($response, true);
 
-        $query = "INSERT INTO games (user_id, game_title, genre, platform) VALUES (:id, :title, :genre, :platform);";
+        //moved field mapping inside this block to avoid undefined variable errors
+        $title = $gameData['name'] ?? 'Unknown Title';
+        $genre = $gameData['genres'][0]['name'] ?? null;
+        $platform = $gameData['platforms'][0]['platform']['name'] ?? null;
+
+        $query = "INSERT INTO games (user_id, game_title, genre, platform) VALUES (:uid, :title, :genre, :platform);";
+
         $stmt = $db->prepare($query);
         $stmt->execute([
             ':uid' => $uid,
@@ -25,16 +30,32 @@ if (!is_null($gid)) {
         ]);
     }
 
-    // redirect to the library page for this user
-} else if (!is_null($query)) {
-    $response = file_get_contents("https://api.rawg.io/api/games?" . http_build_query([
-        'key' => '4440e3e77e974156b392821e6186e4e0',
-        'search' => $query
-    ]));
+    //After adding restart search
+    header("Location: add_game.php?uid=" . $uid);
+    exit();
+}
 
-    if ($response != false) {
-        $results = json_decode($response)->{'results'};
-    }
+//Search or show top 12 games
+else if (!is_null($query)) {
+    $response = file_get_contents("https://api.rawg.io/api/games?" . http_build_query([
+        'key' => $apiKey,
+        'search' => $query,
+        'page_size' => 24 # Show only top 24 results
+    ]));
+}
+
+else {
+    //default is top 24 most popular games
+    $response = file_get_contents("https://api.rawg.io/api/games?" . http_build_query([
+        'key' => $apiKey,
+        'page_size' => 24,
+        'ordering' => '-added' # Most added games
+    ]));
+}
+
+if ($response != false) {
+    $data = json_decode($response);
+    $results = $data->results;
 }
 ?>
 
