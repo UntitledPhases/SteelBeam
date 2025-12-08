@@ -1,16 +1,5 @@
 <?php
-$dsn = 'mysql:host=localhost;dbname=steelbeam';
-$username = 'mgs_user';
-$password = 'pa55word';
-
-try {
-    $db = new PDO($dsn, $username, $password);
-
-} catch (PDOException $e) {
-    $error_message = $e->getMessage();
-    include('database_error.php');
-    exit();
-}
+require_once 'db.php';
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $user = $_POST["username"];
@@ -33,18 +22,28 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 <!DOCTYPE html>
 <html>
     <head>
-    <title >Login</title>
+        <link rel="stylesheet" href="Style_Sheet.css">
+        <title >Login</title>
     </head>
 
-    <h2>StealBeam Login</h2>
+    <h2>SteelBeam Login</h2>
 <body>
     <form method="POST">
-        Username:<br>
-        <input type="text" name="username" required><br><br>
-        Password:<br>
-        <input type="password" name="password" required><br><br>
+        <label>Username:
+            <input type="text" name="username"><br><br>
+        </label>
+        <br>
+
+        <label>Password:
+            <input type="password" name="password"><br><br>
+        </label>
+        <br>
 
         <button type="submit">Log in</button>
     </form>
+    <br>
+    <a href="new_user.php">
+        <button type="button">New user</button>
+    </a>
 </body>
 </html>

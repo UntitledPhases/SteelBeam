@@ -1,17 +1,5 @@
 <?php
-$dsn = 'mysql:host=localhost;dbname=steelbeam';
-$username = 'mgs_user';
-$password = 'pa55word';
-
-try {
-    $db = new PDO($dsn, $username, $password);
-
-    #$query = "SELECT MovieID, MovieTitle, ReleaseDate, Genre FROM movie";
-} catch (PDOException $e) {
-    $error_message = $e->getMessage();
-    include('database_error.php');
-    exit();
-}
+require_once 'db.php';
 
 //Get game ID from URL parameter
 $game_id = isset($_GET['game_id']) ? intval($_GET['game_id']) : 0;
@@ -28,6 +16,7 @@ if ($game_id <= 0) {
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="Style_Sheet.css">
+        <script src="state.js" defer></script>
         <script src="game_details.js" defer></script>
         <title>Game Details - SteelBeam</title>
     </head>

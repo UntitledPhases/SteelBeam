@@ -1,18 +1,5 @@
 <?php
-$dsn = 'mysql:host=localhost;dbname=steelbeam';
-$username = 'mgs_user';
-$password = 'pa55word';
-
-try {
-    $db = new PDO($dsn, $username, $password);
-
-    #$query = "SELECT MovieID, MovieTitle, ReleaseDate, Genre FROM movie";
-} catch (PDOException $e) {
-    $error_message = $e->getMessage();
-    include('database_error.php');
-    exit();
-}
-
+require_once 'db.php';
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +8,7 @@ try {
         <meta charset="UTF-8">
 
         <link rel="stylesheet" href="Style_Sheet.css">
+        <script src="state.js" defer></script>
         <script src="Script.js" defer></script>
         <title>SteelBeam</title>
     </head>
@@ -44,6 +32,10 @@ try {
             <select id="platform-filter">
                 <option value="all">All Platforms</option>
             </select>
+        </div>
+
+        <div class="add-game-button-container">
+            <a href="add_game.php" class="add-game-button">+ Add Game</a>
         </div>
 
         <!--Actual game cards-->
