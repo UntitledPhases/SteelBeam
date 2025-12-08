@@ -6,7 +6,6 @@ $password = 'pa55word';
 try {
     $db = new PDO($dsn, $username, $password);
 
-    #$query = "SELECT MovieID, MovieTitle, ReleaseDate, Genre FROM movie";
 } catch (PDOException $e) {
     $error_message = $e->getMessage();
     include('database_error.php');
