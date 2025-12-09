@@ -4,18 +4,18 @@ require_once 'db.php';
 
 //Get game ID from URL parameter
 $uid = (int)$_SESSION['user_id'];
-$gid = isset($_GET['gid']) ? intval($_GET['gid']) : 0;
+$game_id = isset($_GET['game_id']) ? intval($_GET['game_id']) : 0;
 
 $stmt = $db->prepare("
     SELECT game_id, game_title, genre, platform, status, rating
     FROM games
-    WHERE user_id = :uid AND game_id = :gid
+    WHERE user_id = :uid AND game_id = :game_id
 ");
-$stmt->execute([':gid'=>$gid, ':uid'=>$uid]);
+$stmt->execute([':game_id'=>$game_id, ':uid'=>$uid]);
 $game = $stmt->fetch(PDO::FETCH_ASSOC);
 
 //If no valid game ID, redirect back to main page
-if ($gid <= 0) {
+if ($game_id <= 0) {
     header("Location: library.php");
     exit();
 }
@@ -76,6 +76,6 @@ if ($gid <= 0) {
         </div>
 
         <!-- Hidden input to pass game_id to JavaScript -->
-        <input type="hidden" id="current-game-id" value="<?php echo $gid; ?>">
+        <input type="hidden" id="current-game-id" value="<?php echo $game_id; ?>">
     </body>
 </html>
