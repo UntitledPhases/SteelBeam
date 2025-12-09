@@ -43,7 +43,7 @@ if ($game_id <= 0) {
             </div>
             
             <div class="game-info-section">
-                <h1 id="game-title"><?= htmlspecialchars($game['game-title']) ?></h1>
+                <h1 id="game-title"><?= htmlspecialchars($game['game_title']) ?></h1>
                 
                 <div class="game-metadata">
                     <p><strong>Genre:</strong> <span id="game-genre"><?= htmlspecialchars($game['genre'] ?? 'N/A') ?></span></p>

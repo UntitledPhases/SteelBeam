@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 <body>
     <form method="POST">
         <label>Username:
-            <input type="text" name="username"><br><br>
+            <input type="text" name="username" autofocus><br><br>
         </label>
         <br>
 
