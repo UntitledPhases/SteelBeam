@@ -1,4 +1,5 @@
 <?php
+//Small script to fetch games for user as JSON
 session_start();
 require_once 'db.php';
 

@@ -4,7 +4,7 @@ require_once 'db.php';
 
 $uid = $_SESSION['user_id'];
 
-//Fetch user's game library
+//Fetch user's games
 $stmt = $db->prepare("SELECT game_id, game_title, genre, platform FROM games WHERE user_id = :uid");
 $stmt->execute([':uid' => $uid]);
 $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -16,7 +16,6 @@ $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <meta charset="UTF-8">
 
         <link rel="stylesheet" href="Style_Sheet.css">
-        <script src="state.js" defer></script>
         <script src="Script.js" defer></script>
         <title>SteelBeam</title>
     </head>

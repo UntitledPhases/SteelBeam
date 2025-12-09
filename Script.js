@@ -19,7 +19,7 @@ function renderCards() {
         card.classList.add("card");
         card.href = "#";
         card.dataset.id = game.game_id;
-        const img = game.img || 'https://placehold.co/200x400';
+        const img = game.img || 'https://placehold.co/200x266';
         card.innerHTML =
             `<img src="${img}" alt="${game.game_title}">`;
 

@@ -67,6 +67,7 @@ if ($response != false) {
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <script src="Script.js" defer></script>
         <link rel="stylesheet" href="Style_Sheet.css">
         <title>Add Game - SteelBeam</title>
     </head>
@@ -100,5 +101,6 @@ if ($response != false) {
             <?php } ?>
         </table>
         </center>
+        <div class="library"></div>
     </body>
 </html>
