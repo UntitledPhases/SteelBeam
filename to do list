@@ -30,4 +30,6 @@ Alright, list of what to do
 1. Get images for game_details
 2. use the new rendercards function in add_game
 3. Create a landing page?
-4. make collection buttons selected more obvious
+4. Fix collections buttons
+5. make collection buttons selected more obvious
+6. add_game back to catalog button takes back to search
