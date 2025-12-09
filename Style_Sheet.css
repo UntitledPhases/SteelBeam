@@ -1,3 +1,5 @@
+/* !!! If you find that changes take a while to appear, refresh browser cache with Ctrl + F5 !!! */
+
 /* ===========================
    GLOBAL LAYOUT & TYPOGRAPHY
    =========================== */
@@ -116,7 +118,12 @@ button:hover {
     display: grid;
     grid-template-columns: repeat(auto-fill, 250px);
     justify-content: center;
-    
+    background: #3b3a3a opacity(0.2);
+    background-image: linear-gradient(145deg, #2e2e2e 0%, #262626 100%);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+    margin-top: 20px;
+    border: 2px solid rgb(140, 156, 172);
+    border-radius: 10px;
 }
 
 .card {

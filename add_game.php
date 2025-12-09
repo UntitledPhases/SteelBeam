@@ -76,7 +76,7 @@ if ($response != false) {
         <img src="Images/SteelBeamLogo.png" alt="logo" class="logo">
 
         <div class="back-button-container">
-            <a href="library.php" class="back-button">← Back to Catalog</a>
+            <a href="javascript:history.back()" class="back-button">← Back to Catalog</a>
         </div>
 
         <form action="" method="get">

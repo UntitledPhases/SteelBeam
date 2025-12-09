@@ -34,7 +34,7 @@ if ($game_id <= 0) {
         <img src="Images/SteelBeamLogo.png" alt="logo" class="logo">
         
         <div class="back-button-container">
-            <a href="library.php" class="back-button">← Back to Catalog</a>
+            <a href="javascript:history.go(-1)" class="back-button">← Back to Catalog</a>
         </div>
 
         <div class="game-details-container">
