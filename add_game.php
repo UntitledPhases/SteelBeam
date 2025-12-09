@@ -70,6 +70,7 @@ if ($response != false) {
         <link rel="stylesheet" href="Style_Sheet.css">
         <title>Add Game - SteelBeam</title>
     </head>
+    
     <body>
         <img src="Images/SteelBeamLogo.png" alt="logo" class="logo">
 
@@ -82,19 +83,21 @@ if ($response != false) {
             <input type="submit" value="Go!" />
         </form>
         <br><br>
+        
         <center>
         <table>
-        <?php foreach ($results as $res) { ?>
-        <tr>
-            <td><?php echo $res->{'name'}; ?></td>
-            <td><?php echo $res->{'released'}; ?></td>
-            <td>Rating: <?php echo $res->{'rating'}; ?></td>
-            <td><form action="" method="get">
-                <input type="hidden" name="gid" value="<?php echo $res->{'id'} ?>" />
-                <input type="submit" value="Add" />
-            </form></td>
-        </tr>
-        <?php } ?>
+            <?php foreach ($results as $res) { ?>
+                <tr>
+                    <td><?php echo $res->{'name'}; ?></td>
+                    <td><?php echo $res->{'released'}; ?></td>
+                    <td>Rating: <?php echo $res->{'rating'}; ?></td>
+                    <td><form action="" method="get">
+                            <input type="hidden" name="gid" value="<?php echo $res->{'id'} ?>" />
+                            <input type="submit" value="Add" />
+                        </form>
+                    </td>
+                </tr>
+            <?php } ?>
         </table>
         </center>
     </body>

@@ -1,11 +1,21 @@
 <?php
+session_start();
 require_once 'db.php';
 
 //Get game ID from URL parameter
-$game_id = isset($_GET['game_id']) ? intval($_GET['game_id']) : 0;
+$uid = (int)$_SESSION['user_id'];
+$gid = isset($_GET['gid']) ? intval($_GET['gid']) : 0;
+
+$stmt = $db->prepare("
+    SELECT game_id, game_title, genre, platform, status, rating
+    FROM games
+    WHERE user_id = :uid AND game_id = :gid
+");
+$stmt->execute([':gid'=>$gid, ':uid'=>$uid]);
+$game = $stmt->fetch(PDO::FETCH_ASSOC);
 
 //If no valid game ID, redirect back to main page
-if ($game_id <= 0) {
+if ($gid <= 0) {
     header("Location: library.php");
     exit();
 }
@@ -33,11 +43,11 @@ if ($game_id <= 0) {
             </div>
             
             <div class="game-info-section">
-                <h1 id="game-title">Loading...</h1>
+                <h1 id="game-title"><?= htmlspecialchars($game['game-title']) ?></h1>
                 
                 <div class="game-metadata">
-                    <p><strong>Genre:</strong> <span id="game-genre">N/A</span></p>
-                    <p><strong>Platform:</strong> <span id="game-platform">N/A</span></p>
+                    <p><strong>Genre:</strong> <span id="game-genre"><?= htmlspecialchars($game['genre'] ?? 'N/A') ?></span></p>
+                    <p><strong>Platform:</strong> <span id="game-platform"><?= htmlspecialchars($game['platform'] ?? 'N/A') ?></span></p>
                 </div>
 
                 <div class="rating-section">
@@ -66,6 +76,6 @@ if ($game_id <= 0) {
         </div>
 
         <!-- Hidden input to pass game_id to JavaScript -->
-        <input type="hidden" id="current-game-id" value="<?php echo $game_id; ?>">
+        <input type="hidden" id="current-game-id" value="<?php echo $gid; ?>">
     </body>
 </html>

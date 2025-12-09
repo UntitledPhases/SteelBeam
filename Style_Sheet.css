@@ -21,7 +21,7 @@ body {
     color: rgb(158, 185, 210);
     text-align: center;
     text-shadow: 0 5px 5px rgb(0, 0, 0);
-    background-color: #00151b;
+    background-color: #ffffff;
     background-image: url('images/gun-metal.png');
     background-size: 10px;
 }
@@ -45,9 +45,9 @@ input[type="password"] {
     width: 220px;
     height: 10px;
     padding: 10px;
-    border: 2px solid #8a8a8a;      /* steel frame */
+    border: 2px solid #8a8a8a;      
     border-radius: 5px;
-    background: #d6d6d6;            /* brushed metal color */
+    background: #d6d6d6;            
 
     /* Subtle raised effect */
     box-shadow: inset 1px 1px 3px #ffffff,
@@ -65,7 +65,7 @@ input[type="password"]:focus {
     border-color: #b8b8b8;
     box-shadow: inset 1px 1px 3px #ffffff,
                 inset -1px -1px 3px #707070,
-                0 0 5px rgba(0, 140, 255, 0.5); /* slight glow focus */
+                0 0 5px rgba(0, 140, 255, 0.5); 
 }
 
 
@@ -120,6 +120,7 @@ button:hover {
 
 .card {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    border: inset 4px rgb(88, 165, 228);
     margin: 15px 10px;
     transition: transform 1s ease, box-shadow 0.3s ease, filter 1s ease;
     filter: brightness(80%);

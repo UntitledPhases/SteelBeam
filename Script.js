@@ -1,27 +1,4 @@
-//fill this up with all the games that we will be using
-//need to create some sort of similar storage structure in localStorage, need to also add in game genre and platform,
-const games = [
-    { title: "The Binding of Isaac: Rebirth", img: "Images/Isaac.png", platform: ["PC", "Switch", "Xbox", "Playstation"], genre: ["Shooter", "RPG", "Roguelike", "Action"]},
-    { title: "Hades", img: "Images/Hades.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["RPG", "Roguelike", "Action"] },
-    { title: "Noita", img: "Images/Noita.png", platform: ["PC"], genre: ["Adventure", "RPG", "Roguelike", "Action"] },
-    { title: "Hollow Knight", img: "Images/hollowknight.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure"] },
-    { title: "Terraria", img: "Images/Terraria.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure", "RPG"] },
-    { title: "Cuphead", img: "Images/Cuphead.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Shooter", "Platformer", "Action"] },
-    { title: "Cyberpunk 2077", img: "Images/cyberpunk.png", platform: ["PC","Xbox", "Playstation"], genre: ["RPG", "Action"] },
-    { title: "Risk of Rain 2", img: "Images/RoR2.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Roguelike", "Action"] },
-    { title: "Stardew Valley", img: "Images/Stardew.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure"] },
-    { title: "Team Fortress 2", img: "Images/TF2.png", platform: ["PC"], genre: ["Shooter", "Action"] },
-    { title: "Heroes of Hammerwatch", img: "Images/HoH.png", platform: ["PC"], genre: ["RPG", "Action", "Adventure"] },
-    { title: "Tokyo Xtreme Racer", img: "Images/tokyoxtreme.png", platform: ["PC", "Playstation"], genre: ["Racing"] }
-];
-
-//sort games alphabetically by title
-//games.sort((a, b) => a.title.localeCompare(b.title));
-
-//Ok this code is kind of fucked up ngl but trust me if you go line by line it makes sense.
-//Basically we have the library container in HTML. Thats the first line. Then we loop through each game in the array above
-// and give it an ID. We then create the cards which are the actual little boxes you see on the screen, 
-// we attach the game ID to the card aswell and it goes into the library container.
+let games = [];
 
 const library = document.querySelector(".library"); // Find library container
 
@@ -36,30 +13,34 @@ function setRatingFilled(container, i) {
     })
 }
 
-games.forEach((game, i) => {
-    game.id = i + 1; //assign id to each game first, so we can use it when creating cards
-    const card = document.createElement("a"); //creates card element for each game in the array
-    card.classList.add("card"); // adds card class to each card so we can style it with CSS
-    card.href = "#"; //placeholder link to make cards clickable, don't know if we need this
-    card.dataset.id = game.id //gives each card the same ID as the game it represents, we need this to actually associate cards with games
-    card.innerHTML =
-        `<img src="${game.img}" alt="${game.title}">`; //Fill card element with game image and alt info
+function renderCards() {
+    games.forEach((game) => {
+        const card = document.createElement("a");
+        card.classList.add("card");
+        card.href = "#";
+        card.dataset.id = game.game_id;
+        const img = game.img || 'https://placehold.co/200x400';
+        card.innerHTML =
+            `<img src="${img}" alt="${game.game_title}">`;
 
-    library.appendChild(card);  // Fill library container with cards, library is wrapper for all cards
+        library.appendChild(card);  // Fill library container with cards, library is wrapper for all cards
 
-card.addEventListener("click", (event) => {
-    event.preventDefault();
-    /*
-    document.getElementById("info-title").textContent = game.title;
-    document.getElementById("info-genre").textContent =
-    game.genre.length ? game.genre.join(", ") : "N/A";
-    document.getElementById("info-platform").textContent =
-    game.platform.length ? game.platform.join(", ") : "N/A";
-    */
-    //navigate to game_details php on click, use id as parameter
-    window.location.href = `game_details.php?game_id=${game.id}`;
-    });
-})
+    card.addEventListener("click", (event) => {
+        event.preventDefault();
+        //navigate to game_details php on click, use id as parameter
+        window.location.href = `game_details.php?game_id=${game.game_id}`;
+        });
+    })
+}
+
+//async function to load game data from database
+async function loadGames() {
+    const response = await fetch('get_games.php');
+    games = await response.json();
+    renderCards();
+}
+document.addEventListener("DOMContentLoaded", loadGames)
+
 //functions to create keys and store them in localStorage for different collections
 
 const KEY = "game_data"; //key for game data, just so we don't have to type it out every time we update the localStorage

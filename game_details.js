@@ -1,24 +1,3 @@
-//Game data - same as in Script.js
-const games = [
-    { title: "The Binding of Isaac: Rebirth", img: "Images/Isaac.png", platform: ["PC", "Switch", "Xbox", "Playstation"], genre: ["Shooter", "RPG", "Roguelike", "Action"]},
-    { title: "Hades", img: "Images/Hades.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["RPG", "Roguelike", "Action"] },
-    { title: "Noita", img: "Images/Noita.png", platform: ["PC"], genre: ["Adventure", "RPG", "Roguelike", "Action"] },
-    { title: "Hollow Knight", img: "Images/hollowknight.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure"] },
-    { title: "Terraria", img: "Images/Terraria.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure", "RPG"] },
-    { title: "Cuphead", img: "Images/Cuphead.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Shooter", "Platformer", "Action"] },
-    { title: "Cyberpunk 2077", img: "Images/cyberpunk.png", platform: ["PC","Xbox", "Playstation"], genre: ["RPG", "Action"] },
-    { title: "Risk of Rain 2", img: "Images/RoR2.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Roguelike", "Action"] },
-    { title: "Stardew Valley", img: "Images/Stardew.png", platform: ["PC","Switch","Xbox", "Playstation"], genre: ["Adventure"] },
-    { title: "Team Fortress 2", img: "Images/TF2.png", platform: ["PC"], genre: ["Shooter", "Action"] },
-    { title: "Heroes of Hammerwatch", img: "Images/HoH.png", platform: ["PC"], genre: ["RPG", "Action", "Adventure"] },
-    { title: "Tokyo Xtreme Racer", img: "Images/tokyoxtreme.png", platform: ["PC", "Playstation"], genre: ["Racing"] }
-];
-
-//Assign IDs to games just like in Script.js
-games.forEach((game, i) => {
-    game.id = i + 1;
-});
-
 //localStorage functions - same as Script.js
 const KEY = "game_data";
 const DATA = {
@@ -48,7 +27,7 @@ initializeStorage();
 
 //Get the game ID from the hidden input
 const gameId = parseInt(document.getElementById("current-game-id").value);
-
+/*
 //Find the game in the games array
 const currentGame = games.find(g => g.id === gameId);
 
@@ -63,7 +42,7 @@ document.getElementById("game-image").src = currentGame.img;
 document.getElementById("game-image").alt = currentGame.title;
 document.getElementById("game-genre").textContent = currentGame.genre.join(", ");
 document.getElementById("game-platform").textContent = currentGame.platform.join(", ");
-
+*/
 //Rating functionality
 function setRatingFilled(container, i) {
     [].forEach.call(container.children, function(sym, j) {
