@@ -27,5 +27,5 @@ ______________________
 
 Alright, list of what to do
 
-1. Change game_details page to user proper image/description based on game ID
-2. 
+1. Fix game details page to display properly
+2. use the new rendercards function in add_game
