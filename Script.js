@@ -57,11 +57,11 @@ function renderSearchCards(results) {
 
         card.innerHTML = `
             <img src="${img}" alt="${title}">
-            <div class="card-footer">
+            <div class="card-title-container">
                 <span class="card-title">${title}</span>
                 <form method="get" action="add_game.php">
                     <input type="hidden" name="gid" value="${r.id}">
-                    <input type="submit" value="Add">
+                    <input type="submit" class="card-add-btn" value="Add">
                 </form>
             </div>
         `;

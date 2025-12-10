@@ -1,35 +1,9 @@
-*Assignment Requirements*
-1 Users must register and log in.
-2 Include a database to store derived information from the user (saved
-recipes, favorite games, favorite teams, etc.)
-3 Include a homepage, splash screen, and have at least three different
-pages to navigate from the homepage. (You may need more functionalities
-based on the core functionality of your website)
-4 Functional search bar
-5 Use external APIs to extract real world information ( look for APIs for
-recipes, information about sports teams, information about games and
-platforms) You should NOT have any information manually inputted at
-this stage.
-6 Add additional functionality and views that were not specified in the original
-project
-( ex. Show current sales of specific games, create a shopping list of
-ingredients for certain recipes, filter teams and show top players) Please
-see me before deciding your functionality.
+TO DO
+-----
+1. Card borders need to reflect collections, maybe just change the color of the current border when adding to a collection
+1.5. Filtering based on collection is broken
+2. Styling for collection buttons to make them look nicer
+3. Images for games in Library (good luck(if you really get defeated by this Ill try to do it sometime this week))
+4. Overall UI
 
-1 done
-2 done
-3 done
-4 done alex youre absolutely insane you madman
-5 done
-6 NEED ADDITIONAL FUNCTIONALITY OR AT LEAST need to BS for presentation
-
-______________________
-
-Alright, list of what to do
-
-1. Get images for game_details
-2. use the new rendercards function in add_game
-3. Create a landing page?
-4. Fix collections buttons
-5. make collection buttons selected more obvious
-6. add_game back to catalog button takes back to search
+Pretty sure if we knock out these 4 things were good to go.
