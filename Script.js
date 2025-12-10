@@ -8,27 +8,34 @@ function setRatingFilled(container, i) {
         if (j <= i) {
             sym.classList.add("rate-symbol-filled");
         } else {
-            sym.classList.remove("rate-symbol-filled");
+            sym.classList.remove("rate-symbol-filled"); 
         }
     })
 }
 
-function renderCards() {
+function renderLibraryCards() {
     games.forEach((game) => {
         const card = document.createElement("a");
         card.classList.add("card");
         card.href = "#";
         card.dataset.id = game.game_id;
-        const img = game.img || 'https://placehold.co/200x266?text=' + encodeURIComponent(game.game_title); 
+        const img = game.img || 'https://placehold.co/222x168.475?text=' + encodeURIComponent(game.game_title); 
         card.innerHTML =
             `<img src="${img}" alt="${game.game_title}">`;
 
         library.appendChild(card);  // Fill library container with cards, library is wrapper for all cards
 
-    card.addEventListener("click", (event) => {
-        event.preventDefault();
-        //navigate to game_details php on click, use id as parameter
-        window.location.href = `game_details.php?game_id=${game.game_id}`;
+        card.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            //if game is from API, add, else go to game details page when clicking, yes the logic sucks but it works ¯\(ツ)/¯
+            if (game.fromApi) {
+                window.location.href = `add_game.php?api_game_id=${game.game_id}`
+            }
+
+            else {
+            window.location.href = `game_details.php?game_id=${game.game_id}`;
+            }
         });
     })
 }
@@ -37,9 +44,41 @@ function renderCards() {
 async function loadGames() {
     const response = await fetch('get_games.php');
     games = await response.json();
-    renderCards();
+    renderLibraryCards();
 }
-document.addEventListener("DOMContentLoaded", loadGames)
+
+//Renders cards from API results
+function renderSearchCards(results) {
+    results.forEach((r) =>{
+        const card = document.createElement("a");
+        card.classList.add("card");
+        const title = r.name;
+        const img = r.background_image || 'https://placehold.co/222x168.475?text=' + encodeURIComponent(r.name);
+
+        card.innerHTML = `
+            <img src="${img}" alt="${title}">
+            <div class="card-footer">
+                <span class="card-title">${title}</span>
+                <form method="get" action="add_game.php">
+                    <input type="hidden" name="gid" value="${r.id}">
+                    <input type="submit" value="Add">
+                </form>
+            </div>
+        `;
+
+        library.appendChild(card);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    //if API results exist, use them, else load from database
+    if (Array.isArray(window.apiResults) && window.apiResults.length) {
+        renderSearchCards(window.apiResults);
+    } else {
+        // otherwise (library.php), load from database
+        loadGames();
+    }
+});
 
 //functions to create keys and store them in localStorage for different collections
 

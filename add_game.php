@@ -67,7 +67,6 @@ if ($response != false) {
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <script src="Script.js" defer></script>
         <link rel="stylesheet" href="Style_Sheet.css">
         <title>Add Game - SteelBeam</title>
     </head>
@@ -86,21 +85,12 @@ if ($response != false) {
         <br><br>
         
         <center>
-        <table>
-            <?php foreach ($results as $res) { ?>
-                <tr>
-                    <td><?php echo $res->{'name'}; ?></td>
-                    <td><?php echo $res->{'released'}; ?></td>
-                    <td>Rating: <?php echo $res->{'rating'}; ?></td>
-                    <td><form action="" method="get">
-                            <input type="hidden" name="gid" value="<?php echo $res->{'id'} ?>" />
-                            <input type="submit" value="Add" />
-                        </form>
-                    </td>
-                </tr>
-            <?php } ?>
-        </table>
+            <div class="library"></div>
+            <script>
+                //Send API results to Script.js
+                window.apiResults = <?php echo json_encode($results); ?>;
+            </script>
         </center>
-        <div class="library"></div>
+        <script src="Script.js" defer></script>
     </body>
 </html>
