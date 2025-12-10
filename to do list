@@ -7,3 +7,12 @@ TO DO
 4. Overall UI
 
 Pretty sure if we knock out these 4 things were good to go.
+=============================================================================================
+IMPORTANT!!!!!!!!
+to make sure your site works properly you probably need to reset your DB, I made changes to the SQL.
+    1. Go to phpMyAdmin
+    2. Click on Steelbeam
+    3. On the top click SQL then paste in the SQL code, it'll drop and remake the tables as needed.
+
+After that you just make a new user, log in, and when you add games to your library they will show up in your library.
+Good luck and have fun and wear protection
