@@ -13,6 +13,11 @@ $stmt = $db->prepare("
 $stmt->execute([':uid'=>$uid]);
 $games = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+for ($i = 0; $i < count($games); $i++) {
+    $games[$i]['genre'] = explode(', ', $games[$i]['genre']);
+    $games[$i]['platform'] = explode(', ', $games[$i]['platform']);
+}
+
 header('Content-Type: application/json');
 echo json_encode($games);
 ?>

@@ -2,13 +2,15 @@ let games = [];
 
 const library = document.querySelector(".library"); // Find library container
 
+const genreSelect = document.getElementById('genre-filter');
+const platformSelect = document.getElementById('platform-filter');
 
 function setRatingFilled(container, i) {
     [].forEach.call(container.children, function(sym, j) {
         if (j <= i) {
             sym.classList.add("rate-symbol-filled");
         } else {
-            sym.classList.remove("rate-symbol-filled"); 
+            sym.classList.remove("rate-symbol-filled");
         }
     })
 }
@@ -19,7 +21,7 @@ function renderLibraryCards() {
         card.classList.add("card");
         card.href = "#";
         card.dataset.id = game.game_id;
-        const img = game.img || 'https://placehold.co/222x168.475?text=' + encodeURIComponent(game.game_title); 
+        const img = game.img || 'https://placehold.co/222x168.475?text=' + encodeURIComponent(game.game_title);
         card.innerHTML =
             `<img src="${img}" alt="${game.game_title}">`;
 
@@ -45,6 +47,23 @@ async function loadGames() {
     const response = await fetch('get_games.php');
     games = await response.json();
     renderLibraryCards();
+
+    const allGenres = [...new Set(games.flatMap(g => g.genre))].filter(Boolean);
+    const allPlatforms = [...new Set(games.flatMap(g => g.platform))].filter(Boolean);
+
+    allGenres.forEach(g => {
+        const option = document.createElement('option');
+        option.value = g;
+        option.textContent = g;
+        genreSelect.appendChild(option);
+    });
+
+    allPlatforms.forEach(p => {
+        const option = document.createElement('option');
+        option.value = p;
+        option.textContent = p;
+        platformSelect.appendChild(option);
+    });
 }
 
 //Renders cards from API results
@@ -89,8 +108,8 @@ const DATA = {
         wishlist: [],                   //favorites: [3, 12, 18, etc.]
         completed: []                   //each number is the ID associated with a game
     },                                  //so if a game is added to favorites, add the game ID to the favorites array
-                            
-    rating: {},                         //ratings stored as key value pair, gameID maps to rating value                                            
+
+    rating: {},                         //ratings stored as key value pair, gameID maps to rating value
 };
 
 //ngl I feel like properly storing things in this is going to be a nightmare but we got this guys we can do anything
@@ -123,29 +142,10 @@ saveData(get);
 
 //Now to actually make the filtering buttons work
 const buttons = document.querySelectorAll("[data-filter]"); //select all buttons with data-filter attribute
-const cards = document.querySelectorAll(".card"); //select all game cards
-
-const genreSelect = document.getElementById('genre-filter');
-const platformSelect = document.getElementById('platform-filter');
-
-const allGenres = [...new Set(games.flatMap(g => g.genre))].filter(Boolean);
-const allPlatforms = [...new Set(games.flatMap(g => g.platform))].filter(Boolean);
-
-allGenres.forEach(g => {
-    const option = document.createElement('option');
-    option.value = g;
-    option.textContent = g;
-    genreSelect.appendChild(option);
-});
-
-allPlatforms.forEach(p => {
-    const option = document.createElement('option');
-    option.value = p;
-    option.textContent = p;
-    platformSelect.appendChild(option);
-});
 
 function filterCards(filter) {
+    const cards = document.querySelectorAll(".card"); //select all game cards
+
     const get = getData(); //get fresh copy of data from
     const selectedGenre = genreSelect.value;
     const selectedPlatform = platformSelect.value;
@@ -153,7 +153,7 @@ function filterCards(filter) {
     cards.forEach(card => {
         const id = Number(card.dataset.id); //get the game ID from the card, convert from string to number
 
-        const game = games.find(g => g.id === id);
+        const game = games.find(g => g.game_id === id);
         let visible = true;
 
         switch (filter) {
@@ -256,6 +256,7 @@ cards.forEach(card =>{
 //works mostly ok but sometimes you need to hover off when changing multiple times, not important
 
 function restoreCardBorder(){ //cards weren't keeping color on page refresh so this exists
+    const cards = document.querySelectorAll(".card"); //select all game cards
     const data = getData();
     cards.forEach(card=>{
         const gameId=Number(card.dataset.id);
