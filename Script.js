@@ -21,7 +21,7 @@ function renderLibraryCards() {
         card.classList.add("card");
         card.href = "#";
         card.dataset.id = game.game_id;
-        const img = game.img || 'https://placehold.co/222x168.475?text=' + encodeURIComponent(game.game_title);
+        const img = game.cover_url;
         card.innerHTML =
             `<img src="${img}" alt="${game.game_title}">`;
 

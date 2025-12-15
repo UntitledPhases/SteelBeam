@@ -6,7 +6,7 @@ require_once 'db.php';
 $uid = (int)$_SESSION['user_id'];
 
 $stmt = $db->prepare("
-    SELECT game_id, game_title, genre, platform, status, rating
+    SELECT game_id, game_title, cover_url, genre, platform, status, rating
     FROM games
     WHERE user_id = :uid
 ");
