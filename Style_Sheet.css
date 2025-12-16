@@ -202,7 +202,7 @@ button:hover {
 }
 
 .bwish {
-    color: rgb(0, 174, 255);
+    color: rgb(204, 0, 255);
     text-shadow: 1px 1px black;
 }
 
@@ -216,7 +216,7 @@ button:hover {
 }
 
 .card.in-wishlist {
-    border: 3px solid rgb(0, 174, 255);
+    border: 3px solid rgb(204, 0, 255);
 }
 
 .card.in-completed {
@@ -432,13 +432,13 @@ button:hover {
 }
 
 .btn-wishlist {
-    border-color: rgb(0, 174, 255);
+    border-color: rgb(204, 0, 255);
 }
 
 .btn-wishlist.active {
-    border-color: rgb(0, 174, 255);
+    border-color: rgb(204, 0, 255);
     border-width: 3px;
-    box-shadow: 0 0 15px rgb(0, 174, 255);
+    box-shadow: 0 0 15px rgb(204, 0, 255);
 }
 
 .btn-completed {

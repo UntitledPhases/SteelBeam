@@ -64,6 +64,9 @@ async function loadGames() {
         option.textContent = p;
         platformSelect.appendChild(option);
     });
+
+    filterCards("all");
+    restoreCardBorder();
 }
 
 //Renders cards from API results
@@ -286,9 +289,8 @@ function restoreRatings() {
 }
 */
 
-//initially show all cards
-filterCards("all");
-//keep card border colors
-restoreCardBorder();
+
+//filterCards("all"); moved to line 68
+//restoreCardBorder(); moved to line 69
 //keep ratings
 //restoreRatings();
