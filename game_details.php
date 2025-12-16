@@ -7,7 +7,7 @@ $uid = (int)$_SESSION['user_id'];
 $game_id = isset($_GET['game_id']) ? intval($_GET['game_id']) : 0;
 
 $stmt = $db->prepare("
-    SELECT game_id, game_title, genre, platform, status, rating
+    SELECT game_id, game_title, genre, cover_url, platform, status, rating
     FROM games
     WHERE user_id = :uid AND game_id = :game_id
 ");
@@ -39,7 +39,7 @@ if ($game_id <= 0) {
 
         <div class="game-details-container">
             <div class="game-image-section">
-                <img id="game-image" src="" alt="Game Cover">
+                <img id="game-image" src=<?= htmlspecialchars($game['cover_url']) ?> alt="Game Cover">
             </div>
             
             <div class="game-info-section">
