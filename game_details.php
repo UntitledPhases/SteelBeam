@@ -39,7 +39,7 @@ if ($game_id <= 0) {
 
         <div class="game-details-container">
             <div class="game-image-section">
-                <img id="game-image" src=<?= htmlspecialchars($game['cover_url']) ?> alt="Game Cover">
+                <img id="game-image" src= <?= htmlspecialchars($game['cover_url']) ?> alt="Game Cover">
             </div>
             
             <div class="game-info-section">
