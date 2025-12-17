@@ -24,11 +24,13 @@ if (!is_null($gid)) {
         $platform = join(", ", $platform_names);
         $coverUrl = $gameData['background_image'] ?? ('https://placehold.co/222x168?text=' . urlencode($title));
 
-        $query = "INSERT INTO games (user_id, game_title, cover_url, genre, platform) VALUES (:uid, :title, :coverUrl, :genre, :platform);";
+        $query = "INSERT INTO games (user_id, rawg_id, game_title, cover_url, genre, platform) 
+        VALUES (:uid, :rawg_id, :title, :coverUrl, :genre, :platform);";
 
         $stmt = $db->prepare($query);
         $stmt->execute([
             ':uid' => $uid,
+            ':rawg_id' => $gid,
             ':title' => $title,
             ':coverUrl' => $coverUrl,
             ':genre' => $genre,

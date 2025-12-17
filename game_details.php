@@ -7,7 +7,7 @@ $uid = (int)$_SESSION['user_id'];
 $game_id = isset($_GET['game_id']) ? intval($_GET['game_id']) : 0;
 
 $stmt = $db->prepare("
-    SELECT game_id, game_title, genre, cover_url, platform, status, rating
+    SELECT game_id, rawg_id, game_title, genre, cover_url, platform, status, rating
     FROM games
     WHERE user_id = :uid AND game_id = :game_id
 ");
@@ -18,6 +18,33 @@ $game = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($game_id <= 0) {
     header("Location: library.php");
     exit();
+}
+
+$stores = [];
+$storeResponse = false;
+
+if (!empty($game['rawg_id'])){
+    $storeResponse = file_get_contents("https://api.rawg.io/api/games/{$game['rawg_id']}/stores?key={$apiKey}");
+};
+
+if ($storeResponse !== false){
+    $storeData = json_decode($storeResponse, true);
+    $stores = $storeData['results'] ?? [];
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_game_id'])){
+    $delete_id = intval($_POST['delete_game_id']);
+
+    if ($delete_id > 0) {
+        $stmt = $db->prepare("DELETE FROM games WHERE user_id = :uid AND game_id = :game_id");
+        $stmt->execute([
+            ':uid' => $_SESSION['user_id'],
+            ':game_id' => $delete_id
+        ]);
+
+        header("Location: library.php");
+        exit();
+    }
 }
 ?>
 
@@ -49,6 +76,28 @@ if ($game_id <= 0) {
                     <p><strong>Genre:</strong> <span id="game-genre"><?= htmlspecialchars($game['genre'] ?? 'N/A') ?></span></p>
                     <p><strong>Platform:</strong> <span id="game-platform"><?= htmlspecialchars($game['platform'] ?? 'N/A') ?></span></p>
                 </div>
+                
+                <div class="store-section">
+                    <h3>Game Store Page(s)</h3>
+                    
+                    <?php if (!empty($stores)): ?>
+                
+                        <ul class="store-list">
+                            <?php foreach ($stores as $store): ?>
+                                <li>
+                                    <a href="<?= htmlspecialchars($store['url']) ?>" target="_blank">
+                                    <?= htmlspecialchars($store['store']['name'] ?? parse_url($store['url'], PHP_URL_HOST)) ?>
+                                </a>
+                            </li>
+                            
+                            <?php endforeach; ?>
+                        
+                        </ul>
+                        
+                        <?php else: ?>
+                            <h4>No store links available.</h4>
+                            <?php endif; ?>
+                        </div>
 
                 <div class="rating-section">
                     <h3>Rate this game:</h3>
@@ -72,6 +121,17 @@ if ($game_id <= 0) {
                         </button>
                     </div>
                 </div>
+
+                <div class="delete-section">
+                    <h3>Delete Game</h3>
+                    <form method="post" onsubmit="return confirm('Are you sure you want to delete this game?');">
+                        <input type="hidden" name="delete_game_id" value="<?= htmlspecialchars($game_id) ?>">
+                        <button type="submit" class="collection-btn btn-remove">
+                            Delete Game
+                        </button>
+                    </form>
+                </div>
+
             </div>
         </div>
 

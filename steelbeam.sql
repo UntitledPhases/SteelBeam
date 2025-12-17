@@ -15,6 +15,7 @@ CREATE TABLE users (
 CREATE TABLE games (
     game_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id INT(11) NOT NULL,
+    rawg_id INT(11) NOT NULL,
     game_title VARCHAR(100) NOT NULL,
     cover_url VARCHAR(255) NOT NULL,
     genre VARCHAR(30),
