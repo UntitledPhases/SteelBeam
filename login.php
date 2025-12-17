@@ -6,12 +6,12 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $user = $_POST["username"];
     $pass = $_POST["password"];
 
-    $query = "SELECT * FROM users WHERE username =?";
+    $query = "SELECT user_id, password FROM users WHERE username = ?";
     $stmt = $db->prepare($query);
     $stmt->execute([$user]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($result && $pass === $result["password"]) {
+    if ($result && password_verify($pass, $result["password"])) {
         $_SESSION['user_id'] = (int)$result['user_id'];
         header("Location: library.php");
         exit();

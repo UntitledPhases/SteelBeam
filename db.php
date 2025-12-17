@@ -1,5 +1,5 @@
 <?php
-$dsn = 'mysql:host=localhost;dbname=SteelBeam;charset=utf8';
+$dsn = 'mysql:host=localhost;dbname=steelbeam;charset=utf8mb4';
 $username = 'mgs_user';
 $password = 'pa55word';
 

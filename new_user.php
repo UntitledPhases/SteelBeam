@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $pass = $_POST["password"];
 
     //Check if username already exists
-    $check = "SELECT * FROM users WHERE username =?";
+    $check = "SELECT user_id FROM users WHERE username =?";
     $stmt = $db->prepare($check);
     $stmt->execute([$user]);    
     $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -16,15 +16,18 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
         exit();
     }
     
-    //Tiny script to show alert and redirect back if user exists
+    //Show alert and redirect back if user exists
     if ($existingUser) {
         echo "<script>alert('Username already exists! Please choose another.'); window.location='new_user.php';</script>";
         exit();
     }
 
+    //Hash password before inserting user
+    $hashPass = password_hash($pass, PASSWORD_DEFAULT);
+
     //Insert new user into database
     $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
-    $db->prepare($sql)->execute([$user, $pass]);
+    $db->prepare($sql)->execute([$user, $hashPass]);
 
     //Tiny script to show success message and redirect to login page
     echo "<script>alert('User created successfully!'); window.location='login.php';</script>";
