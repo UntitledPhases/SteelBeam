@@ -8,8 +8,14 @@ USE SteelBeam;
 CREATE TABLE users (
     user_id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(50) NOT NULL
+    password VARCHAR(255) NOT NULL
 );
+
+-- CREATE TEST USER --
+-- Username: test --
+-- Password: test --
+INSERT INTO users (username, password)
+VALUES ('test', '$2y$10$E9H7lX0x6kqZzE4tP8d3tOTsT8k5zE4bH0lFZ9m5wzX7XHkzR8e6G');
 
 -- CREATE GAMES TABLE
 CREATE TABLE games (
