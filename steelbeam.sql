@@ -1,8 +1,8 @@
 
 -- DROP AND CREATE DATABASE
-DROP DATABASE IF EXISTS SteelBeam;
-CREATE DATABASE SteelBeam;
-USE SteelBeam;
+DROP DATABASE IF EXISTS steelbeam;
+CREATE DATABASE steelbeam;
+USE steelbeam;
 
 -- CREATE USERS TABLE
 CREATE TABLE users (
@@ -15,7 +15,7 @@ CREATE TABLE users (
 -- Username: test --
 -- Password: test --
 INSERT INTO users (username, password)
-VALUES ('test', '$2y$10$E9H7lX0x6kqZzE4tP8d3tOTsT8k5zE4bH0lFZ9m5wzX7XHkzR8e6G');
+VALUES ('test', '$2y$10$1GGEtWCPJsvy/ZEdXadG2eNE/Fpy8T1yx0xbnoEpEj68AbtAucvo2');
 
 -- CREATE GAMES TABLE
 CREATE TABLE games (
@@ -35,9 +35,9 @@ CREATE USER IF NOT EXISTS 'mgs_user'@'localhost' IDENTIFIED BY 'pa55word';
 CREATE USER IF NOT EXISTS 'mgs_tester'@'localhost' IDENTIFIED BY 'pa55word';
 
 GRANT SELECT, INSERT, DELETE, UPDATE
-ON SteelBeam.*
+ON steelbeam.*
 TO 'mgs_user'@'localhost';
 
 GRANT SELECT
-ON SteelBeam.*
+ON steelbeam.*
 TO 'mgs_tester'@'localhost';
