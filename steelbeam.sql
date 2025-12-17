@@ -30,13 +30,14 @@ CREATE TABLE games (
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
--- CREATE USERS AND GRANT PRIVILEGES
+-- CREATE USERS AND GRANT PRIVILEGES -- Had to update this cause my SQL kept throwing errors
+CREATE USER IF NOT EXISTS 'mgs_user'@'localhost' IDENTIFIED BY 'pa55word';
+CREATE USER IF NOT EXISTS 'mgs_tester'@'localhost' IDENTIFIED BY 'pa55word';
+
 GRANT SELECT, INSERT, DELETE, UPDATE
 ON SteelBeam.*
-TO mgs_user@localhost
-IDENTIFIED BY 'pa55word';
+TO 'mgs_user'@'localhost';
 
 GRANT SELECT
 ON SteelBeam.*
-TO mgs_tester@localhost
-IDENTIFIED BY 'pa55word';
+TO 'mgs_tester'@'localhost';
