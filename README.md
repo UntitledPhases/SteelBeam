@@ -1,26 +1,68 @@
 # SteelBeam
-So far the idea is to have a catalog of 20-30 games, which can all be stored in an array in the actual HTML file. Then we provide the option to add games to favorites, wishlist, etc., which adds those games to keys (I thought they were called dictionaries?) stored in localStorage.
-Basically, the keys in localStorage are 3d arrays containing
 
-# XAMPP
-Make sure steelbeam folder is moved to: DRIVENAME:\xampp\htdocs 
-Also add database to PHP admin
+A game library and catalog web app. Search games, build a personal library, organize into collections. Built with PHP, MySQL, JavaScript, and the RAWG API.
 
-for testing use:
-Username: test
-Password: password123
+Team project (TeamBeam) — 4 contributors, 111 commits. I was team leader. Built for an internet computing course covering full-stack web development.
 
-index for apache use login.php
+[Video demo](https://youtu.be/3dJNfKRzchY?si=BgMNVS5ntNEXu5nG)
 
-# RAWG API
-RAWG API Key: 4440e3e77e974156b392821e6186e4e0
+---
 
-RAWG queries: https://api.rawg.io/api/games?key=4440e3e77e974156b392821e6186e4e0&search=*ENTER NAME OF GAME HERE*
-examples:     https://api.rawg.io/api/games?key=4440e3e77e974156b392821e6186e4e0&search=minecraft
-              https://api.rawg.io/api/games?key=4440e3e77e974156b392821e6186e4e0&search=the-binding-of-isaac-repentance
+## What It Does
 
-RAWG also provides images
+Users create an account, search the RAWG game database, and add games to a personal library. Games can be rated, favorited, wishlisted, or marked as completed. The library is filterable by genre, platform, and collection.
 
-# PHP
-For any .php files that need access to the db, include the following lines at the top of the page:
-require_once 'db.php';
+---
+
+## Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | HTML, CSS, JavaScript |
+| Backend | PHP |
+| Database | MySQL (via XAMPP) |
+| API | RAWG game database |
+| Auth | Session cookies, bcrypt password hashing |
+
+---
+
+## Features
+
+- User registration and login with hashed passwords
+- Game search via RAWG API integration (defaults to 24 most popular, supports keyword search)
+- Personal library with add/delete (delete requires confirmation)
+- Game detail pages with 0–5 smiley rating scale, genre, platform, and store links
+- Three collections: Favorites, Wishlisted, Completed
+- Filter library by genre, platform, or collection
+- Dynamic card-based UI generated from library data
+
+---
+
+## My Contributions
+
+Team lead. Owned the majority of the codebase across frontend and backend.
+
+- Login and registration pages — full stack (PHP, HTML, form handling, validation)
+- Session cookie authentication logic
+- Database schema design — `users` table (bcrypt hashed passwords), `games` table (FK with CASCADE delete, ENUM status, RAWG ID mapping)
+- Library card generation (JavaScript + PHP)
+- Significant portions of HTML structure and CSS styling
+- UI iteration — reworked interface based on first-round user feedback
+- API config pattern — RAWG key stored in a separate config file, included where needed
+
+---
+
+## Setup
+
+Requires XAMPP (Apache + MySQL).
+
+1. Clone repo into `htdocs`
+2. Import `steelbeam.sql` into phpMyAdmin
+3. Set Apache index to `login.php`
+4. Navigate to `login.php` and create an account
+
+---
+
+## License
+
+Unlicensed (academic project)****
